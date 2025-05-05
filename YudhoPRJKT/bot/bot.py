@@ -1,7 +1,8 @@
 from typing import Literal
 from .Updates import getUpdates
 from .Methods import (
-  getMe
+  getMe,
+  sendMessage
 )
 from .bot_command import BotCommands
 
@@ -34,6 +35,37 @@ class Bot:
     async def getMe(self):
       """Use this method to get information about the bot. Returns a User object on success."""
       return await getMe().Initialize()
+    
+    # methods: sendMessage
+    async def sendMessage(self,
+      chat_id: int | str,
+      text: int | str,
+      parse_mode: Literal["MarkdownV2", "HTML", "Markdown"] = "MarkdownV2",
+      disable_notification: bool | None = None,
+      protect_content: bool | None = None,
+      reply_markup: str | None = None,
+      reply_message: int | str | None = None,
+    ):
+      """Use this method to send text messages. On success, the sent Message is returned.
+  
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          text (str): Text of the message to be sent.
+          parse_mode (str): Send MarkdownV2, HTML or Markdown style for parsing entities in the message text.
+          disable_notification (bool): Sends the message silently. Users will receive a notification with no sound.
+          protect_content (bool): Protects the contents of the sent message from forwarding and saving.
+          reply_markup (str): Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+          reply_message (int): If the message is a reply, ID of the original message.
+      """
+      return await sendMessage().Initialize(
+        chat_id=chat_id,
+        text=text,
+        parse_mode=parse_mode,
+        disable_notification=disable_notification,
+        protect_content=protect_content,
+        reply_markup=reply_markup,
+        reply_message=reply_message
+      )
   
   # Bot Commands
   def command(self, command: str):
