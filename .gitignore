@@ -1,0 +1,24 @@
+# Ignore all virtual environment folders
+**/.venv/
+**/.env/
+
+# Ignore main.py Settings
+**/main.py
+
+# Ignore All visual studio code settings
+**/.vscode/
+
+# Ignore all pycache folders
+**/__pycache__/
+
+# Ignore all configuration files
+**/*.env
+
+# ignore all json files
+**/*.json
+
+# ignore filter 
+**/filter.txt
+
+# ignore admin.txt
+**/admin.txt
