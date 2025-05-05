@@ -21,6 +21,7 @@ class Telegram:
           
           self.message.text = msg_key.get("text", "")
           self.message.chat.id = msg_key["chat"].get("id", "")
+          self.message.message_id = msg_key.get("message_id", "")
           
           await self.DispatchCommand()
         if save_polling == True:
