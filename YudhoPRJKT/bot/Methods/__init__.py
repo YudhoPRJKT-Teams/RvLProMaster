@@ -3,3 +3,4 @@ from .sendMessage import sendMessage
 from .approveChatJoinRequest import approveChatJoinRequest
 from .declineChatJoinRequest import declineChatJoinRequest
 from .deleteMessage import deleteMessage
+from .sendPhoto import sendPhoto
