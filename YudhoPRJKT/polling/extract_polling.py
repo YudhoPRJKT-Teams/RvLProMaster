@@ -1,15 +1,16 @@
 from .long_poling import LongPolling
-from ..bot import Message, ChatJoinRequest
+from ..bot import Message, ChatJoinRequest, CallbackQuery
 from ..utils import CreateLog
 from .save_polling import SavePolling
-from ..bot import pick_command, event_pick
+from ..bot import pick_command, event_pick, pick_callback_button
 import asyncio
+import json
 
 class Telegram:
   def __init__(self):
     self.message = Message
     self.chat_join_request = ChatJoinRequest
-    
+    self.callback_query = CallbackQuery
     
   async def ExtractPolling(self, save_polling: bool = False):
     while True:
@@ -37,8 +38,14 @@ class Telegram:
           self.message.From.username = f"@{msg_key["from"].get("username", "")}"          
           await self.DispatchCommand()
         
+        # Callback Query
+        elif "callback_query" in self.out_updates:
+          self.callback_query.message.message_id = self.out_updates["callback_query"]["message"].get("message_id", "")
+          self.callback_query.data = self.out_updates["callback_query"].get("data", "")
+          await self.DispatchCallbackQuery()
+        
         # Request join
-        if "chat_join_request" in self.out_updates:
+        elif "chat_join_request" in self.out_updates:
           self.current_event = "chat_join_request"
           req_key = self.out_updates["chat_join_request"]
           
@@ -101,3 +108,11 @@ class Telegram:
         self.chat_join_request.From.last_name = ""
         self.chat_join_request.From.username = ""
         self.chat_join_request.From.language_code = ""
+        
+  async def DispatchCallbackQuery(self):
+    callback_keys = self.callback_query
+    if callback_keys.data:
+      callback = callback_keys.data
+      if callback in pick_callback_button:
+        await pick_callback_button[callback]()
+        
