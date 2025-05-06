@@ -42,4 +42,4 @@ The first time the bot is run, you will be asked for a `token` and `endpoint`, s
 
 
 #### Contact Me
-![https://t.me/YudhoPatrianto](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)
+<a href="https://t.me/YudhoPatrianto"><img alt="Sponsor" src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" /></a>
