@@ -3,7 +3,8 @@ from .Updates import getUpdates
 from .Methods import (
   getMe,
   sendMessage,
-  approveChatJoinRequest
+  approveChatJoinRequest,
+  declineChatJoinRequest
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -84,7 +85,22 @@ class Bot:
         chat_id,
         user_id
       )
+    # methods: declineChatJoinRequest
+    async def declineChatJoinRequest(self,
+      chat_id: int | str,
+      user_id: int | str
+    ):
+      """Use this method to decline a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.
   
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          user_id (int): Unique identifier of the target user.
+      """
+      return await declineChatJoinRequest().Initialize(
+        chat_id,
+        user_id
+      )
+
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
