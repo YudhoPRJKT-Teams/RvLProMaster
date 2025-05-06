@@ -3,7 +3,8 @@ from .utils import (
   GetDate,
   InlineKeyboard,
   CreateTelegraph,
-  SelectAI
+  SelectAI,
+  Terminal
 )
 from .config import (
   endpoint,
