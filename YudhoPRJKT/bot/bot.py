@@ -2,7 +2,8 @@ from typing import Literal
 from .Updates import getUpdates
 from .Methods import (
   getMe,
-  sendMessage
+  sendMessage,
+  approveChatJoinRequest
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -66,6 +67,22 @@ class Bot:
         protect_content=protect_content,
         reply_markup=reply_markup,
         reply_message=reply_message
+      )
+      
+    # methods: approveChatJoinRequest
+    async def approveChatJoinRequest(self,
+      chat_id: int | str,
+      user_id: int | str
+    ):
+      """Use this method to approve a chat join request. The bot must be an administrator in the chat for this to work and must have the can_invite_users administrator right. Returns True on success.
+  
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          user_id (int): Unique identifier of the target user.
+      """
+      return await approveChatJoinRequest().Initialize(
+        chat_id,
+        user_id
       )
   
   # Bot Commands
