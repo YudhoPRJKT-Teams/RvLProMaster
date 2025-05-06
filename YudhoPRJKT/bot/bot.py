@@ -5,6 +5,7 @@ from .Methods import (
   sendMessage
 )
 from .bot_command import BotCommands
+from .events import EventWatcher
 
 
 class Bot:
@@ -70,4 +71,8 @@ class Bot:
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
+  
+  # Bot  Event
+  def EventWatchers(self, event_list: Literal["UserRequest"]):
+    return EventWatcher(event_list)
 bot = Bot()

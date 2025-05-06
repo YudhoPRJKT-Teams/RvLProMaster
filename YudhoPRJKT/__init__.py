@@ -9,7 +9,9 @@ from .config import (
 from .bot import (
   bot,
   Message,
-  pick_command
+  ChatJoinRequest,
+  pick_command,
+  event_pick
 )
 from .polling import (
   RunBOT
