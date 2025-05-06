@@ -2,3 +2,6 @@ aiohttp[speedups]
 asyncio
 python-dotenv
 telegraph
+openai
+google-genai
+markdown

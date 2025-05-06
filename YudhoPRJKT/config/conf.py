@@ -41,6 +41,9 @@ class Configs:
 
         self.endpoint = os.getenv("endpoint")
         self.token = os.getenv("token")
+        self.gemini_api_key = os.getenv("gemini_api_key")
+        self.github_pat = os.getenv("github_pat")
+
 
     def findEnv(self, dir="."):
         for find_env in glob.iglob(f"{dir}/**/.env", recursive=True):
@@ -82,3 +85,5 @@ Config = Configs()
 # Pull out loaded environment values
 endpoint = Config.endpoint
 token = Config.token
+gemini_api_key = Config.gemini_api_key
+github_pat = Config.github_pat

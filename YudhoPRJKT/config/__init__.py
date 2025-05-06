@@ -1,4 +1,6 @@
 from .conf import (
   endpoint,
-  token
+  token,
+  gemini_api_key,
+  github_pat
 )
