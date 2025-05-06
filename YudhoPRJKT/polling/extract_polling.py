@@ -19,10 +19,21 @@ class Telegram:
         if "message" in self.out_updates:
           msg_key = self.out_updates["message"]
           
+          # message
           self.message.text = msg_key.get("text", "")
-          self.message.chat.id = msg_key["chat"].get("id", "")
           self.message.message_id = msg_key.get("message_id", "")
+          self.message.date = msg_key.get("date", "")
           
+          # message.chat
+          self.message.chat.id = msg_key["chat"].get("id", "")
+          self.message.chat.title = msg_key["chat"].get("title", "")
+          self.message.chat.username = f"@{msg_key["chat"].get("username", "")}"
+          
+          # mmessage.chat.from
+          self.message.From.id = msg_key["from"].get("id", "")
+          self.message.From.first_name = msg_key["from"].get("first_name", "")
+          self.message.From.last_name = msg_key["from"].get("last_name", "")
+          self.message.From.username = f"@{msg_key["from"].get("username", "")}"          
           await self.DispatchCommand()
         if save_polling == True:
           SavePolling(self.out_updates)
