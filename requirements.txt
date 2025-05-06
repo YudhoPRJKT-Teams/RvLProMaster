@@ -1,3 +1,4 @@
 aiohttp[speedups]
 asyncio
 python-dotenv
+telegraph

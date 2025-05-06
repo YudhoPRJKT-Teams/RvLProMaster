@@ -1,7 +1,8 @@
 from .utils import (
   CreateLog,
   GetDate,
-  InlineKeyboard
+  InlineKeyboard,
+  CreateTelegraph
 )
 from .config import (
   endpoint,
