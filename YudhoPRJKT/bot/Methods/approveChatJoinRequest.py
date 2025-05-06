@@ -19,5 +19,7 @@ class approveChatJoinRequest:
         async with session.post(f"{endpoint}/approveChatJoinRequest", data=payload) as response:
           self.raw_data = await response.json()
           self.pretty_print = dumps(self.raw_data, indent=2)
+          return self
     except (ClientError, ClientResponseError) as e:
       CreateLog("ERROR", f"approveChatJoinRequest: {e}")
+      return self
