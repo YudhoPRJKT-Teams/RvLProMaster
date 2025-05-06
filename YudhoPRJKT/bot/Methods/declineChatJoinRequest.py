@@ -22,3 +22,4 @@ class declineChatJoinRequest:
           return self
     except (ClientError, ClientResponseError) as e:
       CreateLog("ERROR", f"declineChatJoinRequest: {e}")
+      return self
