@@ -96,13 +96,11 @@ class Telegram:
         self.chat_join_request.user_chat_id = "" 
         
         # chat_join_request.chat
-        self.chat_join_request.chat.id = "" 
         self.chat_join_request.chat.title = "" 
         self.chat_join_request.chat.username = "" 
         self.chat_join_request.chat.type = "" 
         
         # chat_join_request.from
-        self.chat_join_request.From.id = ""
         self.chat_join_request.From.is_bot = ""
         self.chat_join_request.From.first_name = ""
         self.chat_join_request.From.last_name = ""
