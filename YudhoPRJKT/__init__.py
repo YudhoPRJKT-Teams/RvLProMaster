@@ -1,7 +1,7 @@
 from .utils import (
   CreateLog,
   GetDate,
-  InlineKeyboard,
+  Inline,
   CreateTelegraph,
   SelectAI,
   Terminal
