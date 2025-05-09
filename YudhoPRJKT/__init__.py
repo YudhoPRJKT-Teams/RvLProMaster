@@ -17,6 +17,8 @@ from .bot import (
   Message,
   ChatJoinRequest,
   CallbackQuery,
+  NewChatParticipant,
+  LeftChatParticipant,
   HandleButton,
   pick_command,
   event_pick,

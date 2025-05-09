@@ -169,6 +169,6 @@ class Bot:
     return BotCommands(command)
   
   # Bot  Event
-  def EventWatchers(self, event_list: Literal["UserRequest"]):
+  def EventWatchers(self, event_list: Literal["UserRequest", "UserJoined", "UserLeft"]):
     return EventWatcher(event_list)
 bot = Bot()

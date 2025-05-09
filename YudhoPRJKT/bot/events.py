@@ -4,7 +4,7 @@ from functools import wraps
 event_pick: Dict[str, Callable[[], Awaitable[Any]]] = {}
 
 
-def EventWatcher(event_list: Literal["UserRequest"]) -> Callable[[Callable[[], Awaitable[Any]]], Callable[[], Awaitable[Any]]]:
+def EventWatcher(event_list: Literal["UserRequest", "UserJoined", "UserLeft"]) -> Callable[[Callable[[], Awaitable[Any]]], Callable[[], Awaitable[Any]]]:
     """Use this decorator to EventWatcher in the bot.
 
     Args:

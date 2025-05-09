@@ -2,7 +2,9 @@ from .bot import bot
 from .Types import (
   Message,
   ChatJoinRequest,
-  CallbackQuery
+  CallbackQuery,
+  NewChatParticipant,
+  LeftChatParticipant
 )
 from .bot_command import pick_command
 from .events import event_pick

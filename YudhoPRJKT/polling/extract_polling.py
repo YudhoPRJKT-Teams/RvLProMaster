@@ -1,5 +1,5 @@
 from .long_poling import LongPolling
-from ..bot import Message, ChatJoinRequest, CallbackQuery
+from ..bot import Message, ChatJoinRequest, CallbackQuery, NewChatParticipant, LeftChatParticipant
 from ..utils import CreateLog
 from .save_polling import SavePolling
 from ..bot import pick_command, event_pick, pick_callback_button
@@ -8,10 +8,12 @@ import json
 
 class Telegram:
   def __init__(self):
+    self.current_event = ''
     self.message = Message
     self.chat_join_request = ChatJoinRequest
     self.callback_query = CallbackQuery
-    
+    self.new_chat_participant = NewChatParticipant
+    self.left_chat_participant = LeftChatParticipant
   async def ExtractPolling(self, save_polling: bool = False):
     while True:
       try:
@@ -37,7 +39,45 @@ class Telegram:
           self.message.From.last_name = msg_key["from"].get("last_name", "")
           self.message.From.username = f"@{msg_key["from"].get("username", "")}"          
           await self.DispatchCommand()
-        
+          
+          # New Chat Participant
+          if "new_chat_participant" in self.out_updates["message"]:
+            self.current_event = "new_chat_participant"
+            
+            # new_chat_participant
+            self.new_chat_participant.id = self.out_updates["message"]["new_chat_participant"].get("id", "")
+            self.new_chat_participant.is_bot = self.out_updates["message"]["new_chat_participant"].get("is_bot", "")  
+            self.new_chat_participant.first_name = self.out_updates["message"]["new_chat_participant"].get("first_name", "")
+            self.new_chat_participant.last_name = self.out_updates["message"]["new_chat_participant"].get("last_name", "")
+            self.new_chat_participant.username = f"@{self.out_updates["message"]["new_chat_participant"].get("username", "")}"
+            self.new_chat_participant.language_code = self.out_updates["message"]["new_chat_participant"].get("language_code", "")
+            # new_chat_participant.message
+            self.new_chat_participant.message.message_id = self.out_updates["message"].get("message_id", "")            
+            # new_chat_participant.message.chat
+            self.new_chat_participant.message.chat.id = self.out_updates["message"]["chat"].get("id", "")
+            self.new_chat_participant.message.chat.title = self.out_updates["message"]["chat"].get("title", "")
+            self.new_chat_participant.message.chat.username = f"@{self.out_updates["message"]["chat"].get("username", "")}"
+            self.new_chat_participant.message.chat.type = self.out_updates["message"]["chat"].get("type", "")
+            await DispatchUser().UserJoined(self.current_event)
+          # Left Chat Participant
+          elif "left_chat_participant" in self.out_updates["message"]:
+            self.current_event = "left_chat_participant"
+            
+            # left_chat_participant
+            self.left_chat_participant.id = self.out_updates["message"]["left_chat_participant"].get("id", "")
+            self.left_chat_participant.is_bot = self.out_updates["message"]["left_chat_participant"].get("is_bot", "")  
+            self.left_chat_participant.first_name = self.out_updates["message"]["left_chat_participant"].get("first_name", "")
+            self.left_chat_participant.last_name = self.out_updates["message"]["left_chat_participant"].get("last_name", "")
+            self.left_chat_participant.username = f"@{self.out_updates["message"]["left_chat_participant"].get("username", "")}"
+            self.left_chat_participant.language_code = self.out_updates["message"]["left_chat_participant"].get("language_code", "")
+            # left_chat_participant.message
+            self.left_chat_participant.message.message_id = self.out_updates["message"].get("message_id", "")            
+            # left_chat_participant.message.chat
+            self.left_chat_participant.message.chat.id = self.out_updates["message"]["chat"].get("id", "")
+            self.left_chat_participant.message.chat.title = self.out_updates["message"]["chat"].get("title", "")
+            self.left_chat_participant.message.chat.username = f"@{self.out_updates["message"]["chat"].get("username", "")}"
+            self.left_chat_participant.message.chat.type = self.out_updates["message"]["chat"].get("type", "")
+            await DispatchUser().UserLeft(self.current_event)
         # Callback Query
         elif "callback_query" in self.out_updates:
           self.callback_query.message.message_id = self.out_updates["callback_query"]["message"].get("message_id", "")
@@ -67,7 +107,9 @@ class Telegram:
           self.chat_join_request.From.last_name = req_key["from"].get("last_name", "")
           self.chat_join_request.From.username = f"@{req_key["from"].get("username", "")}"
           self.chat_join_request.From.language_code = req_key["from"].get("language_code", "")
-          await self.DispatchEvent()
+          await asyncio.sleep(2)
+          await DispatchUser().RequestJoin(self.current_event)
+          
         if save_polling == True:
           SavePolling(self.out_updates)
         elif save_polling == False:
@@ -82,15 +124,28 @@ class Telegram:
       command = message.text.split()[0]
       if command in pick_command:
         await pick_command[command]()
+  async def DispatchCallbackQuery(self):
+    callback_keys = self.callback_query
+    if callback_keys.data:
+      callback = callback_keys.data
+      if callback in pick_callback_button:
+        await pick_callback_button[callback]()
         
-  async def DispatchEvent(self):
-    if self.current_event == "chat_join_request":
-      self.current_event = ""
+        
+# dispatch event
+class DispatchUser:
+  def __init__(self) -> None:
+    tg = Telegram()
+    self.chat_join_request = tg.chat_join_request
+    self.new_chat_participant = tg.new_chat_participant
+  # User Request
+  async def RequestJoin(self, current_event: str):
+    if current_event == "chat_join_request":
+      current_event = ""
       if "UserRequest" in event_pick:
         await event_pick["UserRequest"]()
         
-        # Reset chat_join_request after completed dispatch
-        # await asyncio.sleep(3)
+        # Reset All Value User Request 
         self.chat_join_request.update_id = "" 
         self.chat_join_request.date = "" 
         self.chat_join_request.user_chat_id = "" 
@@ -107,10 +162,46 @@ class Telegram:
         self.chat_join_request.From.username = ""
         self.chat_join_request.From.language_code = ""
         
-  async def DispatchCallbackQuery(self):
-    callback_keys = self.callback_query
-    if callback_keys.data:
-      callback = callback_keys.data
-      if callback in pick_callback_button:
-        await pick_callback_button[callback]()
+  # User Joined
+  async def UserJoined(self, current_event: str):
+    if current_event == "new_chat_participant":
+      current_event = ""
+      if "UserJoined" in event_pick:
+        await event_pick["UserJoined"]()
         
+        # Reset All Value User Joined
+        self.new_chat_participant.id = ""
+        self.new_chat_participant.is_bot = ""
+        self.new_chat_participant.first_name = ""
+        self.new_chat_participant.last_name = ""
+        self.new_chat_participant.username = ""
+        self.new_chat_participant.language_code = ""
+        
+        # new_chat_participant.message
+        self.new_chat_participant.message.message_id = "" 
+        # new_chat_participant.message.chat
+        self.new_chat_participant.message.chat.title = "" 
+        self.new_chat_participant.message.chat.username = "" 
+        self.new_chat_participant.message.chat.type = ""
+        
+  # User Left
+  async def UserLeft(self, current_event: str):
+    if current_event == "left_chat_participant":
+      current_event = ""
+      if "UserLeft" in event_pick:
+        await event_pick["UserLeft"]()
+        
+        # Reset All Value User Left
+        self.new_chat_participant.id = ""
+        self.new_chat_participant.is_bot = ""
+        self.new_chat_participant.first_name = ""
+        self.new_chat_participant.last_name = ""
+        self.new_chat_participant.username = ""
+        self.new_chat_participant.language_code = ""
+        
+        # new_chat_participant.message
+        self.new_chat_participant.message.message_id = "" 
+        # new_chat_participant.message.chat
+        self.new_chat_participant.message.chat.title = "" 
+        self.new_chat_participant.message.chat.username = "" 
+        self.new_chat_participant.message.chat.type = ""  
