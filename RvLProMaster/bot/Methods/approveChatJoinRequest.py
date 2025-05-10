@@ -20,6 +20,6 @@ class approveChatJoinRequest:
           self.raw_data = await response.json()
           self.pretty_print = dumps(self.raw_data, indent=2)
           return self
-    except (ClientError, ClientResponseError) as e:
-      CreateLog("ERROR", f"approveChatJoinRequest: {e}")
+    except (ClientError, ClientResponseError, KeyError) as e:
+      CreateLog("ERROR", f"{e}")
       return self

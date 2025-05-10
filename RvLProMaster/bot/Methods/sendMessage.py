@@ -1,4 +1,5 @@
 from ...config import endpoint
+from ...utils import CreateLog
 from typing import Literal
 import json
 import aiohttp
@@ -17,19 +18,23 @@ class sendMessage:
     reply_markup: str | None = None,
     reply_message: int | str | None = None,
   ):
-    async with aiohttp.ClientSession() as session:
-      payload = {
-          'chat_id': chat_id,
-          'text': text,
-          'parse_mode': parse_mode,
-          'disable_notification': disable_notification,
-          'protect_content': protect_content,
-          'reply_to_message_id': reply_message
-      }
-      if reply_markup is not None:
-          payload['reply_markup'] = reply_markup
-      async with session.post(f"{endpoint}/sendMessage", data=payload) as client:
-          self.raw_data = await client.json()
-          self.pretty_print = json.dumps(self.raw_data, indent=2)
-          self.message_id = self.raw_data['result'].get('message_id', '')
-          return self
+    try:
+      async with aiohttp.ClientSession() as session:
+        payload = {
+            'chat_id': chat_id,
+            'text': text,
+            'parse_mode': parse_mode,
+            'disable_notification': disable_notification,
+            'protect_content': protect_content,
+            'reply_to_message_id': reply_message
+        }
+        if reply_markup is not None:
+            payload['reply_markup'] = reply_markup
+        async with session.post(f"{endpoint}/sendMessage", data=payload) as client:
+            self.raw_data = await client.json()
+            self.pretty_print = json.dumps(self.raw_data, indent=2)
+            self.message_id = self.raw_data['result'].get('message_id', '')
+            return self
+    except KeyError as e:
+      CreateLog("ERROR", f"{e}")
+      return self

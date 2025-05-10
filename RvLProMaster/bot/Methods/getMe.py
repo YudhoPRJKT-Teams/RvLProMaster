@@ -1,4 +1,5 @@
 from ...config import endpoint
+from ...utils import CreateLog
 import json
 import aiohttp
 
@@ -8,8 +9,12 @@ class getMe:
     self.pretty_print = None
     
   async def Initialize(self):
-    async with aiohttp.ClientSession() as session:
-      async with session.get(f"{endpoint}/getMe") as client:
-        self.raw_data = await client.json()
-        self.pretty_print = json.dumps(self.raw_data, indent=2)
-        return self
+    try:
+      async with aiohttp.ClientSession() as session:
+        async with session.get(f"{endpoint}/getMe") as client:
+          self.raw_data = await client.json()
+          self.pretty_print = json.dumps(self.raw_data, indent=2)
+          return self
+    except (aiohttp.ClientError, aiohttp.ClientResponseError, KeyError) as e:
+      CreateLog("ERROR", f"{e}")
+      return self
