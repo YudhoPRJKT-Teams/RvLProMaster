@@ -4,3 +4,4 @@ from .approveChatJoinRequest import approveChatJoinRequest
 from .declineChatJoinRequest import declineChatJoinRequest
 from .deleteMessage import deleteMessage
 from .sendPhoto import sendPhoto
+from .logOut import logOut

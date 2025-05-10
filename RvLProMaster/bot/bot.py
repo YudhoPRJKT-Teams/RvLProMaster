@@ -6,7 +6,8 @@ from .Methods import (
   approveChatJoinRequest,
   declineChatJoinRequest,
   deleteMessage,
-  sendPhoto
+  sendPhoto,
+  logOut
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -163,7 +164,15 @@ class Bot:
         reply_markup,
         reply_message
       )
-
+      
+    # methods: logOut
+    async def logOut(self):
+      """Use this method to log out from the cloud Bot API server before launching the bot locally. You must log out the bot before running it in local mode. The method will return True on success.
+  
+      Note:
+          You must log out the bot before running it in local mode.
+      """
+      return await logOut().Initialize()
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
