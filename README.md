@@ -17,7 +17,7 @@ pip install -r requirements.txt
 
 ##### Create File Main.py To Use Bots
 ```python
-from YudhoPRJKT import RunBOT, Message, bot
+from RvLProMaster import RunBOT, Message, bot
 import asyncio
 
 

@@ -1,4 +1,4 @@
-from YudhoPRJKT import CreateLog
+from ..utils import CreateLog
 import os
 import json
 import sys

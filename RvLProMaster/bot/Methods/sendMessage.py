@@ -1,4 +1,4 @@
-from YudhoPRJKT import endpoint
+from ...config import endpoint
 from typing import Literal
 import json
 import aiohttp

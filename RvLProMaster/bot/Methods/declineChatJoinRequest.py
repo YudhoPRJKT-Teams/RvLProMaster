@@ -1,6 +1,6 @@
 from aiohttp import ClientSession
 from aiohttp.client_exceptions import ClientError, ClientResponseError
-from YudhoPRJKT import endpoint
+from ...config import endpoint
 from json import dumps
 from ...utils import CreateLog
 
