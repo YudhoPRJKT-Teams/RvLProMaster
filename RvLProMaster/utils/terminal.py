@@ -5,25 +5,29 @@ import textwrap
 import traceback
 import ast
 import asyncio
-
+from .create_log import CreateLog
 class _Terminal:
     def __init__(self):
         self.output_terminal = ''
 
     def Bash(self, command: str):
-        """
-        Run a bash command and return the output.
-        """
-        pr = subprocess.run(
-            command,
-            shell=True,
-            check=True,
-            text=True,
-            capture_output=True,
-        )
+        try:
+            """
+            Run a bash command and return the output.
+            """
+            pr = subprocess.run(
+                command,
+                shell=True,
+                check=True,
+                text=True,
+                capture_output=True,
+            )
 
-        self.output_terminal = pr.stdout or pr.stderr
-        return self
+            self.output_terminal = pr.stdout or pr.stderr
+            return self
+        except subprocess.CalledProcessError as e:
+            CreateLog("ERROR", f"{e}")
+            return self
 
     async def Python(self, command: str):
         # Dedent input code for proper formatting
