@@ -7,7 +7,8 @@ from .Methods import (
   declineChatJoinRequest,
   deleteMessage,
   sendPhoto,
-  logOut
+  logOut,
+  sendVideo
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -173,6 +174,45 @@ class Bot:
           You must log out the bot before running it in local mode.
       """
       return await logOut().Initialize()
+    # methods: sendVideo
+    async def sendVideo(self,
+      chat_id: int | str,
+      video: str,
+      caption: str | None = None,
+      parse_mode: Literal["MarkdownV2", "HTML", "Markdown"] = "MarkdownV2",
+      has_spoiler: bool = False,
+      disable_notification: bool = False,
+      protect_content: bool = False,
+      reply_markup: str | None = None,
+      reply_message: int | str | None = None,
+    ):
+      """Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
+
+      Args:
+          chat_id (int | str): Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+          video (str): Video from url or path/to/video.mp4 to send. Pass a file_id as String to send a video that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a video from the Internet, or upload a new video using multipart/form-data
+          caption (str | None, optional): _description_. Video caption (may also be used when resending videos by file_id), 0-1024 characters after entities parsing
+          parse_mode (Literal[&quot;MarkdownV2&quot;, &quot;HTML&quot;, &quot;Markdown&quot;], optional): Mode for parsing entities in the video caption. See formatting options for more details. Defaults to "MarkdownV2".
+          has_spoiler (bool): Disables link previews for links in this message.
+          disable_notification (bool): Sends the message silently. Users will receive a notification with no sound.
+          protect_content (bool): Protects the contents of the sent message from forwarding and saving.
+          reply_markup (str): Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+          reply_message (int): If the message is a reply, ID of the original message.
+
+      Returns:
+          _type_: _description_
+      """
+      return await sendVideo().Initialize(
+        chat_id,
+        video,
+        caption,
+        parse_mode,
+        has_spoiler,
+        disable_notification,
+        protect_content,
+        reply_markup,
+        reply_message
+      )
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
