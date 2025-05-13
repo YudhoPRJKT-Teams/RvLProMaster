@@ -5,3 +5,4 @@ telegraph
 openai
 google-genai
 markdown
+yt-dlp
