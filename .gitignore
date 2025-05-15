@@ -22,3 +22,6 @@
 
 # ignore admin.txt
 **/admin.txt
+
+# Ingnore test files (test.py)
+**/test.py
