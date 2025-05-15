@@ -10,7 +10,8 @@ from .Methods import (
   logOut,
   sendVideo,
   close,
-  forwardMessage
+  forwardMessage,
+  sendDocument
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -243,6 +244,39 @@ class Bot:
         message_id,
         protect_content,
         disable_notification
+      )
+    # methods: sendDocument
+    async def sendDocument(self,
+      chat_id: int | str,
+      document: str,
+      caption: str | None = None,
+      parse_mode: Literal["MarkdownV2", "HTML", "Markdown"] = "MarkdownV2",
+      disable_notification: bool = False,
+      protect_content: bool = False,
+      reply_markup: str | None = None,
+      reply_message: int | str | None = None,
+    ):
+      """Use this method to send general files. On success, the sent Message is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
+
+      Args:
+          chat_id (int | str): Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+          document (str): document from url or path/to/file to send	File to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
+          caption (str | None, optional): _description_. Video caption (may also be used when resending videos by file_id), 0-1024 characters after entities parsing
+          parse_mode (Literal[&quot;MarkdownV2&quot;, &quot;HTML&quot;, &quot;Markdown&quot;], optional): Mode for parsing entities in the video caption. See formatting options for more details. Defaults to "MarkdownV2".
+          disable_notification (bool): Sends the message silently. Users will receive a notification with no sound.
+          protect_content (bool): Protects the contents of the sent message from forwarding and saving.
+          reply_markup (str): Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+          reply_message (int): If the message is a reply, ID of the original message.
+      """
+      return await sendDocument().Initialize(
+        chat_id,
+        document,
+        caption,
+        parse_mode,
+        disable_notification,
+        protect_content,
+        reply_markup,
+        reply_message
       )
   # Bot Commands
   def command(self, command: str):
