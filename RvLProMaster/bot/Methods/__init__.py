@@ -11,3 +11,4 @@ from .forwardMessage import forwardMessage
 from .sendDocument import sendDocument
 from .copyMessage import copyMessage
 from .sendAudio import sendAudio
+from .sendVoice import sendVoice

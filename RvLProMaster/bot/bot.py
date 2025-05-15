@@ -13,7 +13,8 @@ from .Methods import (
   forwardMessage,
   sendDocument,
   copyMessage,
-  sendAudio
+  sendAudio,
+  sendVoice
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -332,6 +333,40 @@ class Bot:
       return await sendAudio().Initialize(
         chat_id,
         audio,
+        caption,
+        parse_mode,
+        disable_notification,
+        protect_content,
+        reply_markup,
+        reply_message
+      )
+      
+    # methods: sendVoice
+    async def sendVoice(self,
+      chat_id: int | str,
+      voice: str,
+      caption: str | None = None,
+      parse_mode: Literal["MarkdownV2", "HTML", "Markdown"] = "MarkdownV2",
+      disable_notification: bool = False,
+      protect_content: bool = False,
+      reply_markup: str | None = None,
+      reply_message: int | str | None = None
+    ):
+      """Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in an audio/mpeg or audio/ogg format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          voice (str): Audio file to send. Pass a file_id as String to send an audio file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an audio file from the Internet, or upload a new one using multipart/form-data.
+          caption (str): Audio caption, 0-1024 characters after entities parsing.
+          parse_mode (str): Send MarkdownV2, HTML or Markdown style for parsing entities in the message text.
+          disable_notification (bool): Sends the message silently. Users will receive a notification with no sound.
+          protect_content (bool): Protects the contents of the sent message from forwarding and saving.
+          reply_markup (str): Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+          reply_message (int): If the message is a reply, ID of the original message.
+      """
+      return await sendVoice().Initialize(
+        chat_id,
+        voice,
         caption,
         parse_mode,
         disable_notification,
