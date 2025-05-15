@@ -11,7 +11,8 @@ from .Methods import (
   sendVideo,
   close,
   forwardMessage,
-  sendDocument
+  sendDocument,
+  copyMessage
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -277,6 +278,32 @@ class Bot:
         protect_content,
         reply_markup,
         reply_message
+      )
+    # methods: copyMessage
+    async def copyMessage(self,
+      chat_id: int | str,
+      from_chat_id: int | str,
+      message_id: int | str,
+      caption: str | None = None,
+      parse_mode: str | None = None,
+      reply_markup: str | None = None,
+      reply_message: int | str | None = None
+    ):
+      """Use this method to copy messages of any kind. Service messages and messages with protected content can't be copied. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.
+  
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          from_chat_id (int): Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername).
+          message_id (int): Identifier of the original message.
+          caption (str): New caption for media, 0-1024 characters after entities parsing.
+          parse_mode (str): Send MarkdownV2, HTML or Markdown style for parsing entities in the message text.
+      """
+      return await copyMessage().Initialize(
+        chat_id,
+        from_chat_id,
+        message_id,
+        caption,
+        parse_mode
       )
   # Bot Commands
   def command(self, command: str):

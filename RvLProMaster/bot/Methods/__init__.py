@@ -9,3 +9,4 @@ from .sendVideo import sendVideo
 from .close import close
 from .forwardMessage import forwardMessage
 from .sendDocument import sendDocument
+from .copyMessage import copyMessage
