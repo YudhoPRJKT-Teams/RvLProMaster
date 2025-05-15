@@ -7,3 +7,4 @@ from .sendPhoto import sendPhoto
 from .logOut import logOut
 from .sendVideo import sendVideo
 from .close import close
+from .forwardMessage import forwardMessage

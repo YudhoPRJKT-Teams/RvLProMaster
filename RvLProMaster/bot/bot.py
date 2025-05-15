@@ -9,7 +9,8 @@ from .Methods import (
   sendPhoto,
   logOut,
   sendVideo,
-  close
+  close,
+  forwardMessage
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -219,6 +220,30 @@ class Bot:
     async def close(self):
       """Use this method to close the bot instance before moving it from one local server to another. You need to delete the webhook before calling this method to ensure that the bot isn't launched again after server restart. The method will return error 429 in the first 10 minutes after the bot is launched. Returns True on success. Requires no parameters."""
       return await close().Initialize()
+    # methods: forwardMessage
+    async def forwardMessage(self,
+      chat_id: int | str,
+      from_chat_id: int | str,
+      message_id: int | str,
+      protect_content: bool = False,
+      disable_notification: bool = False
+    ):
+      """Use this method to forward messages of any kind. Service messages and messages with protected content can't be forwarded. On success, the sent Message is returned.
+  
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          from_chat_id (int): Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername).
+          message_id (int): Identifier of the original message.
+          protect_content (bool): Protects the contents of the sent message from forwarding and saving.
+          disable_notification (bool): Sends the message silently. Users will receive a notification with no sound.
+      """
+      return await forwardMessage().Initialize(
+        chat_id,
+        from_chat_id,
+        message_id,
+        protect_content,
+        disable_notification
+      )
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
