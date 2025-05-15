@@ -38,8 +38,26 @@ class Telegram:
           self.message.From.first_name = msg_key["from"].get("first_name", "")
           self.message.From.last_name = msg_key["from"].get("last_name", "")
           self.message.From.username = f"@{msg_key["from"].get("username", "")}"          
-          await self.DispatchCommand()
           
+          if "reply_to_message" in msg_key:
+            reply_key = msg_key["reply_to_message"]
+            # message.reply_to_message
+            self.message.reply_to_message.message_id = reply_key.get("message_id", "")
+            
+            # message.reply_to_message.From
+            self.message.reply_to_message.From.id = reply_key["from"].get("id", "")
+            self.message.reply_to_message.From.first_name = reply_key["from"].get("first_name", "")
+            self.message.reply_to_message.From.last_name = reply_key["from"].get("last_name", "")
+            self.message.reply_to_message.From.username = f"@{reply_key["from"].get("username", "")}"
+            
+            # message.reply_to_message.chat
+            self.message.reply_to_message.chat.id = reply_key["chat"].get("id", "")
+            self.message.reply_to_message.chat.title = reply_key["chat"].get("title", "")
+            self.message.reply_to_message.chat.username = f"@{reply_key["chat"].get("username", "")}"
+            self.message.reply_to_message.chat.type = reply_key["chat"].get("type", "")
+            self.message.reply_to_message.chat.type = reply_key["chat"].get("type", "")
+          await self.DispatchCommand()
+
           # New Chat Participant
           if "new_chat_participant" in self.out_updates["message"]:
             self.current_event = "new_chat_participant"
