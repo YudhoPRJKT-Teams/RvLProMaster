@@ -12,3 +12,4 @@ from .sendDocument import sendDocument
 from .copyMessage import copyMessage
 from .sendAudio import sendAudio
 from .sendVoice import sendVoice
+from .sendDice import sendDice

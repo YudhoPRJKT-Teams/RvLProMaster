@@ -14,7 +14,8 @@ from .Methods import (
   sendDocument,
   copyMessage,
   sendAudio,
-  sendVoice
+  sendVoice,
+  sendDice
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -374,6 +375,30 @@ class Bot:
         reply_markup,
         reply_message
       )
+    
+    # methods: sendDice
+    async def sendDice(self,
+      chat_id: int | str,
+      emoji: str | None = None,
+      disable_notification: bool = False,
+      protect_content: bool = False,
+      reply_markup: str | None = None,
+    ):
+      """Use this method to send an animated emoji that displays a random value. On success, the sent Message is returned.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          emoji (str): Emoji on which the dice throw animation is based. Currently, must be one of the following: “🎲”, “🎯”, “🏁”, “🎳”, “🎰”. Dice can have values from 1-6.
+          disable_notification (bool): Sends the message silently. Users will receive a notification with no sound.
+          protect_content (bool): Protects the contents of the sent message from forwarding and saving.
+      """
+      return await sendDice().Initialize(
+        chat_id,
+        emoji,
+        disable_notification,
+        protect_content,
+      )
+      
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
