@@ -19,7 +19,8 @@ from .Methods import (
   sendAnimation,
   sendVideoNote,
   sendLocation,
-  sendVenue
+  sendVenue,
+  sendPoll
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -534,6 +535,31 @@ class Bot:
         title,
         address,
         reply_message
+      )
+    
+    # methods: sendPoll
+    async def sendPoll(self,
+      chat_id: int | str,
+      question: str,
+      options: list[str],
+      is_anonymous: bool = True,
+      type: str | None = None
+    ):
+      """Use this method to send a native poll. On success, the sent Message is returned.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          question (str): Poll question, 1-255 characters.
+          options (list[str]): List of answer options, 2-10 strings 1-100 characters each.
+          is_anonymous (bool): Pass True if the poll needs to be anonymous, defaults to True. Non-anonymous polls can't be sent to private chats.
+          type (str | None): Poll type, “quiz” or “regular”, defaults to “regular”.
+      """
+      return await sendPoll().Initialize(
+        chat_id,
+        question,
+        options,
+        is_anonymous,
+        type
       )
   # Bot Commands
   def command(self, command: str):
