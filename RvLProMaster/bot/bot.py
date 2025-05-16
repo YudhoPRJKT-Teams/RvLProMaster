@@ -15,7 +15,8 @@ from .Methods import (
   copyMessage,
   sendAudio,
   sendVoice,
-  sendDice
+  sendDice,
+  sendAnimation
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -398,7 +399,42 @@ class Bot:
         disable_notification,
         protect_content,
       )
-      
+    # methods: sendAnimation
+    async def sendAnimation(self,
+      chat_id: int | str,
+      animation: str,
+      caption: str | None = None,
+      parse_mode: str | None = None,
+      has_spoiler: bool = False,
+      disable_notification: bool = False,
+      protect_content: bool = False,
+      reply_markup: str | None = None,
+      reply_message: int | str | None = None
+    ):
+      """Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          animation (str): Animation file to send. Pass a file_id as String to send an animation that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an animation from the Internet, or upload a new one using multipart/form-data.
+          caption (str): Animation caption (may also be used when resending animation by file_id), 0-1024 characters after entities parsing.
+          parse_mode (str | None): Send MarkdownV2, HTML or Markdown style for parsing entities in the message text.
+          has_spoiler (bool): Disables link previews for links in this message.
+          disable_notification (bool): Sends the message silently. Users will receive a notification with no sound.
+          protect_content (bool): Protects the contents of the sent message from forwarding and saving.
+          reply_markup (str): Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+          reply_message (int): If the message is a reply, ID of the original message.
+      """
+      return await sendAnimation().Initialize(
+        chat_id,
+        animation,
+        caption,
+        parse_mode,
+        has_spoiler,
+        disable_notification,
+        protect_content,
+        reply_markup,
+        reply_message
+      )
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
