@@ -18,7 +18,8 @@ from .Methods import (
   sendDice,
   sendAnimation,
   sendVideoNote,
-  sendLocation
+  sendLocation,
+  sendVenue
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -501,7 +502,39 @@ class Bot:
         live_period,
         reply_message
       )
+    # methods: sendVenue
+    async def sendVenue(self,
+      chat_id: int | str,
+      latitude: float,
+      longitude: float,
+      disable_notification: bool = False,
+      protect_content: bool = False,
+      title: str | None = None,
+      address: str | None = None,
+      reply_message: int | str | None = None
+    ):
+      """Use this method to send information about a venue. On success, the sent Message is returned.
 
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          latitude (float): Latitude of the location.
+          longitude (float): Longitude of the location.
+          disable_notification (bool): Sends the message silently. Users will receive a notification with no sound.
+          protect_content (bool): Protects the contents of the sent message from forwarding and saving.
+          title (str | None): Name of the venue.
+          address (str | None): Address of the venue.
+          reply_message (int | str): If the message is a reply, ID of the original message.
+      """
+      return await sendVenue().Initialize(
+        chat_id,
+        latitude,
+        longitude,
+        disable_notification,
+        protect_content,
+        title,
+        address,
+        reply_message
+      )
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)

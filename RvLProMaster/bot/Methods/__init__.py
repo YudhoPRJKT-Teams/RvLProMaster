@@ -16,3 +16,4 @@ from .sendDice import sendDice
 from .sendAnimation import sendAnimation
 from .sendVideoNote import sendVideoNote
 from .sendLocation import sendLocation
+from .sendVenue import sendVenue
