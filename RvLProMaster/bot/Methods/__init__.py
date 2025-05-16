@@ -14,3 +14,4 @@ from .sendAudio import sendAudio
 from .sendVoice import sendVoice
 from .sendDice import sendDice
 from .sendAnimation import sendAnimation
+from .sendVideoNote import sendVideoNote
