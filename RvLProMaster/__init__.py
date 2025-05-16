@@ -6,7 +6,8 @@ from .utils import (
   SelectAI,
   Terminal,
   AdminUtils,
-  DownloadVideo
+  DownloadVideo,
+  BaseConnection
 )
 from .config import (
   endpoint,
