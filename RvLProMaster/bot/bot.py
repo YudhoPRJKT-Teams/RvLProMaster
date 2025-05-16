@@ -20,7 +20,8 @@ from .Methods import (
   sendVideoNote,
   sendLocation,
   sendVenue,
-  sendPoll
+  sendPoll,
+  sendChatAction
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -560,6 +561,32 @@ class Bot:
         options,
         is_anonymous,
         type
+      )
+      
+    # methods: sendChatAction
+    async def sendChatAction(self,
+      chat_id: int | str,
+      action: str
+    ):
+      """Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status after 5 seconds). Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          action (str): Type of action to broadcast. Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, record_video or upload_video for videos, record_audio or upload_audio for audio files, upload_document for general files, record_video_note or upload_video_note for video notes.
+            - typing: bot will simulate typing
+            - upload_photo: bot will simulate upload photos
+            - record_video: bot will simulate recording video
+            - upload_video: bot will simulate upload video
+            - record_audio: bot will simulate recording audio
+            - upload_audio: bot will simulate upload audio
+            - upload_document: bot will simulate upload document
+            - record_video_note: bot will simulate recording video note
+            - upload_video_note: bot will simulate upload video note
+            - choose_sticker: bot will simulate choosing sticker
+      """
+      return await sendChatAction().Initialize(
+        chat_id,
+        action
       )
   # Bot Commands
   def command(self, command: str):
