@@ -17,7 +17,8 @@ from .Methods import (
   sendVoice,
   sendDice,
   sendAnimation,
-  sendVideoNote
+  sendVideoNote,
+  sendLocation
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -470,6 +471,37 @@ class Bot:
         reply_markup,
         reply_message
       )
+    # methods: sendLocation
+    async def sendLocation(self,
+      chat_id: int | str,
+      latitude: float,
+      longitude: float,
+      disable_notification: bool = False,
+      protect_content: bool = False,
+      live_period: int | None = None,
+      reply_message: int | str | None = None
+    ):
+      """Use this method to send point on the map. On success, the sent Message is returned.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          latitude (float): Latitude of the location.
+          longitude (float): Longitude of the location.
+          disable_notification (bool): Sends the message silently. Users will receive a notification with no sound.
+          protect_content (bool): Protects the contents of the sent message from forwarding and saving.
+          live_period (int | None): Period in seconds for which the location will be updated (see Live Locations, should be between 60 and 86400.
+          reply_message (int | str): If the message is a reply, ID of the original message.
+      """
+      return await sendLocation().Initialize(
+        chat_id,
+        latitude,
+        longitude,
+        disable_notification,
+        protect_content,
+        live_period,
+        reply_message
+      )
+
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
