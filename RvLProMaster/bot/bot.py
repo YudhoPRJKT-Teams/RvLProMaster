@@ -21,7 +21,8 @@ from .Methods import (
   sendLocation,
   sendVenue,
   sendPoll,
-  sendChatAction
+  sendChatAction,
+  getUserProfilePhotos
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -587,6 +588,22 @@ class Bot:
       return await sendChatAction().Initialize(
         chat_id,
         action
+      )
+    
+    # methods: getUserProfilePhotos
+    async def getUserProfilePhotos(self,
+      user_id: int | str,
+      limit: int = 100,
+    ):
+      """Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
+
+      Args:
+          user_id (int): Unique identifier of the target user.
+          limit (int): Limits the number of photos to be retrieved. Values between 1-100 are accepted. Defaults to 100.
+      """
+      return await getUserProfilePhotos().Initialize(
+        user_id,
+        limit
       )
   # Bot Commands
   def command(self, command: str):

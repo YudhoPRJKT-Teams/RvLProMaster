@@ -19,3 +19,4 @@ from .sendLocation import sendLocation
 from .sendVenue import sendVenue
 from .sendPoll import sendPoll
 from .sendChatAction  import sendChatAction
+from .getUserProfilePhotos import getUserProfilePhotos
