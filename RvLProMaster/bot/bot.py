@@ -22,7 +22,8 @@ from .Methods import (
   sendVenue,
   sendPoll,
   sendChatAction,
-  getUserProfilePhotos
+  getUserProfilePhotos,
+  getFile
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -604,6 +605,18 @@ class Bot:
       return await getUserProfilePhotos().Initialize(
         user_id,
         limit
+      )
+    # methods: getFile
+    async def getFile(self,
+      file_id: str
+    ):
+      """Use this method to get basic info about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a File object is returned.
+
+      Args:
+          file_id (str): File id to be downloaded.
+      """
+      return await getFile().Initialize(
+        file_id
       )
   # Bot Commands
   def command(self, command: str):
