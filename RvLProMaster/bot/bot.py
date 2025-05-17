@@ -28,7 +28,8 @@ from .Methods import (
   unbanChatMember,
   restrictChatMember,
   banChatSenderChat,
-  unbanChatSenderChat
+  unbanChatSenderChat,
+  setChatPermissions
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -757,6 +758,65 @@ class Bot:
       return await unbanChatSenderChat().Initialize(
         chat_id,
         sender_chat_id
+      )
+      
+    # methods: setChatPermissions
+    async def setChatPermissions(self,
+      chat_id: int | str,
+      
+      # User Permissions
+      canSendMessage: bool = False,
+      canSendAudio: bool = True,
+      canSendDocument: bool = True,
+      canSendPhoto: bool = True,
+      canSendVideo: bool = True,
+      canSendVideoNote: bool = True,
+      canSendVoiceNote: bool = True,
+      canSendPoll: bool = False,
+      canSendOtherMessage: bool = True,
+      canAddWebPagePreviews: bool = True,
+      canChangeInfo: bool = False,
+      canInviteUsers: bool = False,
+      canPinMessages: bool = False,
+      canManageTopics: bool = False
+    ):
+      """Use this method to set default chat permissions in a supergroup or channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          **User Permissions**
+            - canSendMessage (bool): Pass True if the user can send text messages, contacts, locations and venues.
+            - canSendAudio (bool): Pass True if the user can send audios, such as voice notes and music files.
+            - canSendDocument (bool): Pass True if the user can send documents.
+            - canSendPhoto (bool): Pass True if the user can send photos.
+            - canSendVideo (bool): Pass True if the user can send videos.
+            - canSendVideoNote (bool): Pass True if the user can send video notes.
+            - canSendVoiceNote (bool): Pass True if the user can send voice notes.
+            - canSendPoll (bool): Pass True if the user can send polls.
+            - canSendOtherMessage (bool): Pass True if the user can send other messages, such as stickers, media, location-based games and live locations.
+            - canAddWebPagePreviews (bool): Pass True if the user can add web page previews to their messages.
+            - canChangeInfo (bool): Pass True if the user is allowed to change the chat title, photo and other settings.
+            - canInviteUsers (bool): Pass True if the user is allowed to invite new users to the chat.
+            - canPinMessages (bool): Pass True if the user is allowed to pin messages.
+            - canManageTopics (bool): Pass True if the user is allowed to create, rename, close and reopen forum topics.
+          
+      """
+      return await setChatPermissions().Initialize(
+        chat_id,
+        canSendMessage,
+        canSendAudio,
+        canSendDocument,
+        canSendPhoto,
+        canSendVideo,
+        canSendVideoNote,
+        canSendVoiceNote,
+        canSendPoll,
+        canSendOtherMessage,
+        canAddWebPagePreviews,
+        canChangeInfo,
+        canInviteUsers,
+        canPinMessages,
+        canManageTopics
       )
   # Bot Commands
   def command(self, command: str):

@@ -26,3 +26,4 @@ from .unbanChatMember import unbanChatMember
 from .restrictChatMember import restrictChatMember
 from .banChatSenderChat import banChatSenderChat
 from .unbanChatSenderChat import unbanChatSenderChat
+from .setChatPermissions import setChatPermissions
