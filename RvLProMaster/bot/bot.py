@@ -31,7 +31,8 @@ from .Methods import (
   unbanChatSenderChat,
   setChatPermissions,
   exportChatInviteLink,
-  createChatInviteLink
+  createChatInviteLink,
+  editChatInviteLink
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -851,6 +852,34 @@ class Bot:
       """
       return await createChatInviteLink().Initialize(
         chat_id,
+        name,
+        expire_date,
+        member_limit,
+        creates_join_request
+      )
+      
+    # methods: editChatInviteLink
+    async def editChatInviteLink(self,
+      chat_id: int | str,
+      invite_link: str,
+      name: str | None = None,
+      expire_date: int | str | None = None,
+      member_limit: int | None = None,
+      creates_join_request: bool = False
+    ):
+      """Use this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as String on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          invite_link (str): Invite link to be edited.
+          name (str | None): Invite link name.
+          expire_date (int | str | None): Point in time (Unix timestamp) when the link will expire.
+          member_limit (int | None): The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999.
+          creates_join_request (bool): Pass True if a user joined the chat via this invite link, they should be asked to join the chat via a join request.
+      """
+      return await editChatInviteLink().Initialize(
+        chat_id,
+        invite_link,
         name,
         expire_date,
         member_limit,

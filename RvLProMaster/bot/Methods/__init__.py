@@ -29,3 +29,4 @@ from .unbanChatSenderChat import unbanChatSenderChat
 from .setChatPermissions import setChatPermissions
 from .exportChatInviteLink import exportChatInviteLink
 from .createChatInviteLink import createChatInviteLink
+from .editChatInviteLink import editChatInviteLink
