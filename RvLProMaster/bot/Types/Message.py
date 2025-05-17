@@ -11,6 +11,7 @@ class MESSAGE:
     class ReplyToMessage:
         def __init__(self) -> None:
             self.message_id = '' # message.reply_to_message.message_id
+            self.text = '' # message.reply_to_message.text
             self.From = self._from() # message.reply_to_message.From
             self.chat = self.Chat() # message.reply_to_message.chat
         

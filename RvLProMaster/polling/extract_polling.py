@@ -43,6 +43,7 @@ class Telegram:
             reply_key = msg_key["reply_to_message"]
             # message.reply_to_message
             self.message.reply_to_message.message_id = reply_key.get("message_id", "")
+            self.message.reply_to_message.text = reply_key.get("text", "")
             
             # message.reply_to_message.From
             self.message.reply_to_message.From.id = reply_key["from"].get("id", "")
