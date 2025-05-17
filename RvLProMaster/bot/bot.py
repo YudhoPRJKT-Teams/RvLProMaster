@@ -25,7 +25,8 @@ from .Methods import (
   getUserProfilePhotos,
   getFile,
   banChatMember,
-  unbanChatMember
+  unbanChatMember,
+  restrictChatMember
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -658,6 +659,70 @@ class Bot:
         chat_id,
         user_id,
         only_if_banned
+      )
+    # methods: restrictChatMember
+    async def restrictChatMember(self,
+      chat_id: int | str,
+      user_id: int | str,
+      until_date: int | str | None = None,
+      
+      # User Permissions
+      canSendMessage: bool = False,
+      canSendAudio: bool = True,
+      canSendDocument: bool = True,
+      canSendPhoto: bool = True,
+      canSendVideo: bool = True,
+      canSendVideoNote: bool = True,
+      canSendVoiceNote: bool = True,
+      canSendPoll: bool = False,
+      canSendOtherMessage: bool = True,
+      canAddWebPagePreviews: bool = True,
+      canChangeInfo: bool = False,
+      canInviteUsers: bool = False,
+      canPinMessages: bool = False,
+      canManageTopics: bool = False
+    ):
+      """Use this method to restrict a user in a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          user_id (int): Unique identifier of the target user.
+          until_date (int | str | None): Date when restrictions will be lifted for the user, unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, then they are considered to be restricted forever.
+          
+          **User Permissions**
+            - canSendMessage (bool): Pass True if the user can send text messages, contacts, locations and venues.
+            - canSendAudio (bool): Pass True if the user can send audios, such as voice notes and music files.
+            - canSendDocument (bool): Pass True if the user can send documents.
+            - canSendPhoto (bool): Pass True if the user can send photos.
+            - canSendVideo (bool): Pass True if the user can send videos.
+            - canSendVideoNote (bool): Pass True if the user can send video notes.
+            - canSendVoiceNote (bool): Pass True if the user can send voice notes.
+            - canSendPoll (bool): Pass True if the user can send polls.
+            - canSendOtherMessage (bool): Pass True if the user can send other messages, such as stickers, media, location-based games and live locations.
+            - canAddWebPagePreviews (bool): Pass True if the user can add web page previews to their messages.
+            - canChangeInfo (bool): Pass True if the user is allowed to change the chat title, photo and other settings.
+            - canInviteUsers (bool): Pass True if the user is allowed to invite new users to the chat.
+            - canPinMessages (bool): Pass True if the user is allowed to pin messages.
+            - canManageTopics (bool): Pass True if the user is allowed to create, rename, close and reopen forum topics.
+      """
+      return await restrictChatMember().Initialize(
+        chat_id,
+        user_id,
+        until_date,
+        canSendMessage,
+        canSendAudio,
+        canSendDocument,
+        canSendPhoto,
+        canSendVideo,
+        canSendVideoNote,
+        canSendVoiceNote,
+        canSendPoll,
+        canSendOtherMessage,
+        canAddWebPagePreviews,
+        canChangeInfo,
+        canInviteUsers,
+        canPinMessages,
+        canManageTopics
       )
   # Bot Commands
   def command(self, command: str):
