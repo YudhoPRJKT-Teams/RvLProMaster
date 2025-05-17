@@ -23,7 +23,8 @@ from .Methods import (
   sendPoll,
   sendChatAction,
   getUserProfilePhotos,
-  getFile
+  getFile,
+  banChatMember
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -617,6 +618,27 @@ class Bot:
       """
       return await getFile().Initialize(
         file_id
+      )
+    # methods: banChatMember
+    async def banChatMember(self,
+      chat_id: int | str,
+      user_id: int | str,
+      until_date: int | str | None = None,
+      revoke_messages: bool = False
+    ):
+      """Use this method to ban a user in a supergroup or channel. In the current implementation, the user will not be able to send messages to the group or channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          user_id (int): Unique identifier of the target user.
+          until_date (int | str | None): Date when the user will be unbanned, unix time. If user is banned for more than 366 days or less than 30 seconds from the current time, then they are considered to be banned forever.
+          revoke_messages (bool): Pass True if the user's messages should be removed.
+      """
+      return await banChatMember().Initialize(
+        chat_id,
+        user_id,
+        until_date,
+        revoke_messages
       )
   # Bot Commands
   def command(self, command: str):
