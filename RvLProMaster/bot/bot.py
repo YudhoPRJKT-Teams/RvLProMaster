@@ -29,7 +29,8 @@ from .Methods import (
   restrictChatMember,
   banChatSenderChat,
   unbanChatSenderChat,
-  setChatPermissions
+  setChatPermissions,
+  exportChatInviteLink
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -818,6 +819,17 @@ class Bot:
         canPinMessages,
         canManageTopics
       )
+    
+    # methods: exportChatInviteLink
+    async def exportChatInviteLink(self,
+      chat_id: int | str
+    ):
+      """Use this method to export a new invite link for a chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as String on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+      """
+      return await exportChatInviteLink().Initialize(chat_id)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
