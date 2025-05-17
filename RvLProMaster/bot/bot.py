@@ -27,7 +27,8 @@ from .Methods import (
   banChatMember,
   unbanChatMember,
   restrictChatMember,
-  banChatSenderChat
+  banChatSenderChat,
+  unbanChatSenderChat
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -738,6 +739,22 @@ class Bot:
           sender_chat_id (int): Unique identifier of the target sender chat.
       """
       return await banChatSenderChat().Initialize(
+        chat_id,
+        sender_chat_id
+      )
+      
+    # methods: unbanChatSenderChat
+    async def unbanChatSenderChat(self,
+      chat_id: int | str,
+      sender_chat_id: int | str
+    ):
+      """Use this method to unban a previously banned channel chat in a supergroup or channel. The bot must be an administrator for this to work and must have the appropriate administrator rights. Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          sender_chat_id (int): Unique identifier of the target sender chat.
+      """
+      return await unbanChatSenderChat().Initialize(
         chat_id,
         sender_chat_id
       )
