@@ -24,7 +24,8 @@ from .Methods import (
   sendChatAction,
   getUserProfilePhotos,
   getFile,
-  banChatMember
+  banChatMember,
+  unbanChatMember
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -639,6 +640,24 @@ class Bot:
         user_id,
         until_date,
         revoke_messages
+      )
+    # methods: unbanChatMember
+    async def unbanChatMember(self,
+      chat_id: int | str,
+      user_id: int | str,
+      only_if_banned: bool = False
+    ):
+      """Use this method to unban a previously banned user in a supergroup or channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          user_id (int): Unique identifier of the target user.
+          only_if_banned (bool): Pass True if the user is banned.
+      """
+      return await unbanChatMember().Initialize(
+        chat_id,
+        user_id,
+        only_if_banned
       )
   # Bot Commands
   def command(self, command: str):

@@ -22,3 +22,4 @@ from .sendChatAction  import sendChatAction
 from .getUserProfilePhotos import getUserProfilePhotos
 from .getFile import getFile
 from .banChatMember import banChatMember
+from .unbanChatMember import unbanChatMember
