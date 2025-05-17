@@ -24,3 +24,4 @@ from .getFile import getFile
 from .banChatMember import banChatMember
 from .unbanChatMember import unbanChatMember
 from .restrictChatMember import restrictChatMember
+from .banChatSenderChat import banChatSenderChat

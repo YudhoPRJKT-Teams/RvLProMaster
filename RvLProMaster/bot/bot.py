@@ -26,7 +26,8 @@ from .Methods import (
   getFile,
   banChatMember,
   unbanChatMember,
-  restrictChatMember
+  restrictChatMember,
+  banChatSenderChat
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -723,6 +724,22 @@ class Bot:
         canInviteUsers,
         canPinMessages,
         canManageTopics
+      )
+      
+    # methods: banChatSenderChat
+    async def banChatSenderChat(self,
+      chat_id: int | str,
+      sender_chat_id: int | str
+    ):
+      """Use this method to ban a channel chat in a supergroup or channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          sender_chat_id (int): Unique identifier of the target sender chat.
+      """
+      return await banChatSenderChat().Initialize(
+        chat_id,
+        sender_chat_id
       )
   # Bot Commands
   def command(self, command: str):
