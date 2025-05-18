@@ -52,7 +52,8 @@ from .Methods import (
   unpinAllForumTopicMessages,
   editGeneralForumTopic,
   closeGeneralForumTopic,
-  reopenGeneralForumTopic
+  reopenGeneralForumTopic,
+  hideGeneralForumTopic
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1161,6 +1162,15 @@ class Bot:
           chat_id (str | int): Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
       """
       return await reopenGeneralForumTopic().Initialize(chat_id)
+    
+    # methods: hideGeneralForumTopic
+    async def hideGeneralForumTopic(self, chat_id: str | int):
+      """Use this method to hide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.
+
+      Args:
+          chat_id (str | int): Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+      """
+      return await hideGeneralForumTopic().Initialize(chat_id)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
