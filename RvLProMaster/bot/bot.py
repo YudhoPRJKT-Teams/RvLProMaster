@@ -36,7 +36,8 @@ from .Methods import (
   pinChatMessage,
   unpinChatMessage,
   unpinAllChatMessages,
-  leaveChat
+  leaveChat,
+  getChat
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -946,6 +947,17 @@ class Bot:
           chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
       """
       return await leaveChat().Initialize(chat_id)
+    
+    # methods: getChat
+    async def getChat(self,
+      chat_id: int | str
+    ):
+      """Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user for private chats and supergroups, and current title of a supergroup or channel). Returns a Chat object on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+      """
+      return await getChat().Initialize(chat_id)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)

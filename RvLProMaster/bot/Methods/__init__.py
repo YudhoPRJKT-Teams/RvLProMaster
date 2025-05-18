@@ -34,3 +34,4 @@ from .pinChatMessage import pinChatMessage
 from .unpinChatMessage import unpinChatMessage
 from .unpinAllChatMessages import unpinAllChatMessages
 from .leaveChat import leaveChat
+from .getChat import getChat
