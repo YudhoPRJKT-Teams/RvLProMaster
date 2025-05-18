@@ -48,3 +48,4 @@ from .reopenForumTopic import reopenForumTopic
 from .deleteForumTopic import deleteForumTopic
 from .unpinAllForumTopicMessages import unpinAllForumTopicMessages
 from .editGeneralForumTopic import editGeneralForumTopic
+from .closeGeneralForumTopic import closeGeneralForumTopic

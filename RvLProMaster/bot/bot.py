@@ -50,7 +50,8 @@ from .Methods import (
   reopenForumTopic,
   deleteForumTopic,
   unpinAllForumTopicMessages,
-  editGeneralForumTopic
+  editGeneralForumTopic,
+  closeGeneralForumTopic
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1141,6 +1142,15 @@ class Bot:
           name (str): Name of the topic.
       """
       return await editGeneralForumTopic().Initialize(chat_id, name)
+    
+    # methods: closeGeneralForumTopic
+    async def closeGeneralForumTopic(self, chat_id: str | int):
+      """Use this method to close an open 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator rights. Returns True on success.
+
+      Args:
+          chat_id (str | int): Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+      """
+      return await closeGeneralForumTopic().Initialize(chat_id)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
