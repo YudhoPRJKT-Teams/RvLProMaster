@@ -49,7 +49,8 @@ from .Methods import (
   closeForumTopic,
   reopenForumTopic,
   deleteForumTopic,
-  unpinAllForumTopicMessages
+  unpinAllForumTopicMessages,
+  editGeneralForumTopic
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1128,6 +1129,18 @@ class Bot:
       """
       return await unpinAllForumTopicMessages().Initialize(chat_id, message_thread_id)
     
+    # methods: editGeneralForumTopic
+    async def editGeneralForumTopic(self,
+      chat_id: int | str,
+      name: str
+    ):
+      """Use this method to edit the name of the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          name (str): Name of the topic.
+      """
+      return await editGeneralForumTopic().Initialize(chat_id, name)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)

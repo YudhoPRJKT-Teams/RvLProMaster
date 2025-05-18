@@ -47,3 +47,4 @@ from .closeForumTopic import closeForumTopic
 from .reopenForumTopic import reopenForumTopic
 from .deleteForumTopic import deleteForumTopic
 from .unpinAllForumTopicMessages import unpinAllForumTopicMessages
+from .editGeneralForumTopic import editGeneralForumTopic
