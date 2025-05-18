@@ -33,7 +33,8 @@ from .Methods import (
   exportChatInviteLink,
   createChatInviteLink,
   editChatInviteLink,
-  pinChatMessage
+  pinChatMessage,
+  unpinChatMessage
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -904,6 +905,22 @@ class Bot:
         chat_id,
         message_id,
         disable_notification
+      )
+    
+    # methods: unpinChatMessage
+    async def unpinChatMessage(self,
+      chat_id: int | str,
+      message_id: int | str
+    ):
+      """Use this method to remove a message from the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          message_id (int): Identifier of a message to unpin.
+      """
+      return await unpinChatMessage().Initialize(
+        chat_id,
+        message_id
       )
   # Bot Commands
   def command(self, command: str):
