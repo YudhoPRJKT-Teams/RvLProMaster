@@ -46,7 +46,8 @@ from .Methods import (
   getForumTopicIconStickers,
   createForumTopic,
   editForumTopic,
-  closeForumTopic
+  closeForumTopic,
+  reopenForumTopic
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1085,6 +1086,19 @@ class Bot:
           message_thread_id (int): Unique identifier for the target message thread of the forum topic.
       """
       return await closeForumTopic().Initialize(chat_id, message_thread_id)
+    
+    # methods: reopenForumTopic
+    async def reopenForumTopic(self,
+      chat_id: int | str,
+      message_thread_id: int | str
+    ):
+      """Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          message_thread_id (int): Unique identifier for the target message thread of the forum topic.
+      """
+      return await reopenForumTopic().Initialize(chat_id, message_thread_id)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)

@@ -44,3 +44,4 @@ from .getForumTopicIconStickers import getForumTopicIconStickers
 from .createForumTopic import createForumTopic
 from .editForumTopic import editForumTopic
 from .closeForumTopic import closeForumTopic
+from .reopenForumTopic import reopenForumTopic
