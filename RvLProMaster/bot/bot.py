@@ -44,7 +44,8 @@ from .Methods import (
   setChatStickerSet,
   deleteChatStickerSet,
   getForumTopicIconStickers,
-  createForumTopic
+  createForumTopic,
+  editForumTopic
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1048,6 +1049,27 @@ class Bot:
         chat_id,
         name,
         icon_color,
+        icon_custom_emoji_id
+      )
+    # methods: editForumTopic
+    async def editForumTopic(self,
+      chat_id: int | str,
+      message_thread_id: int | str,
+      name: str | None = None,
+      icon_custom_emoji_id: str | None = None
+    ):
+      """Use this method to edit a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          message_thread_id (int): Unique identifier for the target message thread of the forum topic.
+          name (str | None): Name of the topic.
+          icon_custom_emoji_id (str | None): Unique identifier of the custom emoji shown as the topic icon.
+      """
+      return await editForumTopic().Initialize(
+        chat_id,
+        message_thread_id,
+        name,
         icon_custom_emoji_id
       )
   # Bot Commands

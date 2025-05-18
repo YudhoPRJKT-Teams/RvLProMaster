@@ -42,3 +42,4 @@ from .setChatStickerSet import setChatStickerSet
 from .deleteChatStickerSet import deleteChatStickerSet
 from .getForumTopicIconStickers import getForumTopicIconStickers
 from .createForumTopic import createForumTopic
+from .editForumTopic import editForumTopic
