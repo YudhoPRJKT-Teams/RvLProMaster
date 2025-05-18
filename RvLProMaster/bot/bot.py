@@ -32,7 +32,8 @@ from .Methods import (
   setChatPermissions,
   exportChatInviteLink,
   createChatInviteLink,
-  editChatInviteLink
+  editChatInviteLink,
+  pinChatMessage
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -884,6 +885,25 @@ class Bot:
         expire_date,
         member_limit,
         creates_join_request
+      )
+    
+    # methods: pinChatMessage
+    async def pinChatMessage(self,
+      chat_id: int | str,
+      message_id: int | str,
+      disable_notification: bool = False
+    ):
+      """Use this method to add a message to the list of pinned messages in a chat. If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' administrator right in a supergroup or 'can_edit_messages' administrator right in a channel. Returns True on success
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          message_id (int): Identifier of a message to pin.
+          disable_notification (bool): Pass True if it is not necessary to send a notification to all group members about the new pinned message.
+      """
+      return await pinChatMessage().Initialize(
+        chat_id,
+        message_id,
+        disable_notification
       )
   # Bot Commands
   def command(self, command: str):
