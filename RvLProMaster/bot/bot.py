@@ -42,7 +42,8 @@ from .Methods import (
   getChatMemberCount,
   getChatMember,
   setChatStickerSet,
-  deleteChatStickerSet
+  deleteChatStickerSet,
+  getForumTopicIconStickers
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1022,6 +1023,11 @@ class Bot:
           chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
       """
       return await deleteChatStickerSet().Initialize(chat_id)
+    
+    # methods: getForumTopicIconStickers
+    async def getForumTopicIconStickers(self):
+      """Use this method to get custom emoji stickers, which can be used as forum topic icons. Returns an Array of Sticker objects."""
+      return await getForumTopicIconStickers().Initialize()
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)

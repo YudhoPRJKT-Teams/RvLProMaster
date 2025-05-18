@@ -40,3 +40,4 @@ from .getChatMemberCount import getChatMemberCount
 from .getChatMember import getChatMember
 from .setChatStickerSet import setChatStickerSet
 from .deleteChatStickerSet import deleteChatStickerSet
+from .getForumTopicIconStickers import getForumTopicIconStickers
