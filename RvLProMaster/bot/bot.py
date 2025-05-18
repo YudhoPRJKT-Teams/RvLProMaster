@@ -43,7 +43,8 @@ from .Methods import (
   getChatMember,
   setChatStickerSet,
   deleteChatStickerSet,
-  getForumTopicIconStickers
+  getForumTopicIconStickers,
+  createForumTopic
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1028,6 +1029,27 @@ class Bot:
     async def getForumTopicIconStickers(self):
       """Use this method to get custom emoji stickers, which can be used as forum topic icons. Returns an Array of Sticker objects."""
       return await getForumTopicIconStickers().Initialize()
+    # methods: createForumTopic
+    async def createForumTopic(self,
+      chat_id: int | str,
+      name: str,
+      icon_color: str | None = None,
+      icon_custom_emoji_id: str | None = None
+    ):
+      """Use this method to create a topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns information about the created topic as a ForumTopic object.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          name (str): Name of the topic.
+          icon_color (str | None): Color of the topic icon in RGB format.
+          icon_custom_emoji_id (str | None): Unique identifier of the custom emoji shown as the topic icon.
+      """
+      return await createForumTopic().Initialize(
+        chat_id,
+        name,
+        icon_color,
+        icon_custom_emoji_id
+      )
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
