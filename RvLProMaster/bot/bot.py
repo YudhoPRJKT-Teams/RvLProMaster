@@ -39,7 +39,8 @@ from .Methods import (
   leaveChat,
   getChat,
   getChatAdministrators,
-  getChatMemberCount
+  getChatMemberCount,
+  getChatMember
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -982,6 +983,20 @@ class Bot:
           chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
       """
       return await getChatMemberCount().Initialize(chat_id)
+    
+    # methods: getChatMember
+    async def getChatMember(self,
+      chat_id: int | str,
+      user_id: int | str
+    ):
+      """Use this method to get information about a member of a chat. The method is only guaranteed to work for other users if the bot is an administrator in the chat. Returns a ChatMember object on success.
+
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          user_id (int): Unique identifier of the target user.
+      """
+      return await getChatMember().Initialize(chat_id, user_id)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
