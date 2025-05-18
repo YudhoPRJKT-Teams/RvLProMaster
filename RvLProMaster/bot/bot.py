@@ -54,7 +54,8 @@ from .Methods import (
   closeGeneralForumTopic,
   reopenGeneralForumTopic,
   hideGeneralForumTopic,
-  unhideGeneralForumTopic
+  unhideGeneralForumTopic,
+  unpinAllGeneralForumTopicMessages
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1181,6 +1182,15 @@ class Bot:
           chat_id (str | int): Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
       """
       return await unhideGeneralForumTopic().Initialize(chat_id)
+    
+    # methods: unpinAllGeneralForumTopicMessages
+    async def unpinAllGeneralForumTopicMessages(self, chat_id: str | int):
+      """Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
+
+      Args:
+          chat_id (str | int): Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+      """
+      return await unpinAllGeneralForumTopicMessages().Initialize(chat_id)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)

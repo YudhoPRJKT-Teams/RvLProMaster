@@ -52,3 +52,4 @@ from .closeGeneralForumTopic import closeGeneralForumTopic
 from .reopenGeneralForumTopic import reopenGeneralForumTopic
 from .hideGeneralForumTopic import hideGeneralForumTopic
 from .unhideGeneralForumTopic import unhideGeneralForumTopic
+from .unpinAllGeneralForumTopicMessages import unpinAllGeneralForumTopicMessages
