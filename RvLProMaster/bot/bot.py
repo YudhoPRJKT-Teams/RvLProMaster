@@ -47,7 +47,8 @@ from .Methods import (
   createForumTopic,
   editForumTopic,
   closeForumTopic,
-  reopenForumTopic
+  reopenForumTopic,
+  deleteForumTopic
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1099,6 +1100,19 @@ class Bot:
           message_thread_id (int): Unique identifier for the target message thread of the forum topic.
       """
       return await reopenForumTopic().Initialize(chat_id, message_thread_id)
+    
+    # methods: deleteForumTopic
+    async def deleteForumTopic(self,
+      chat_id: int | str,
+      message_thread_id: int | str
+    ):
+      """Use this method to delete a forum topic along with all its messages in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          message_thread_id (int): Unique identifier for the target message thread of the forum topic.
+      """
+      return await deleteForumTopic().Initialize(chat_id, message_thread_id)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)

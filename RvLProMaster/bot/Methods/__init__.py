@@ -45,3 +45,4 @@ from .createForumTopic import createForumTopic
 from .editForumTopic import editForumTopic
 from .closeForumTopic import closeForumTopic
 from .reopenForumTopic import reopenForumTopic
+from .deleteForumTopic import deleteForumTopic
