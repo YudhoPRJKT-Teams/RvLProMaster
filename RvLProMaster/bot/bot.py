@@ -48,7 +48,8 @@ from .Methods import (
   editForumTopic,
   closeForumTopic,
   reopenForumTopic,
-  deleteForumTopic
+  deleteForumTopic,
+  unpinAllForumTopicMessages
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1113,6 +1114,20 @@ class Bot:
           message_thread_id (int): Unique identifier for the target message thread of the forum topic.
       """
       return await deleteForumTopic().Initialize(chat_id, message_thread_id)
+    
+    # methods: unpinAllForumTopicMessages
+    async def unpinAllForumTopicMessages(self,
+      chat_id: int | str,
+      message_thread_id: int | str
+    ):
+      """Use this method to clear the list of pinned messages in a forum topic. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          message_thread_id (int): Unique identifier for the target message thread of the forum topic.
+      """
+      return await unpinAllForumTopicMessages().Initialize(chat_id, message_thread_id)
+    
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
