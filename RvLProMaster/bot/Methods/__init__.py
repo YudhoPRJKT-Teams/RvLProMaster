@@ -36,3 +36,4 @@ from .unpinAllChatMessages import unpinAllChatMessages
 from .leaveChat import leaveChat
 from .getChat import getChat
 from .getChatAdministrators import getChatAdministrators
+from .getChatMemberCount import getChatMemberCount

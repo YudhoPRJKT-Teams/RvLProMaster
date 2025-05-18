@@ -38,7 +38,8 @@ from .Methods import (
   unpinAllChatMessages,
   leaveChat,
   getChat,
-  getChatAdministrators
+  getChatAdministrators,
+  getChatMemberCount
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -970,6 +971,17 @@ class Bot:
           chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
       """
       return await getChatAdministrators().Initialize(chat_id)
+    
+    # methods: getChatMemberCount
+    async def getChatMemberCount(self,
+      chat_id: int | str
+    ):
+      """Use this method to get the number of members in a chat. Returns Int on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+      """
+      return await getChatMemberCount().Initialize(chat_id)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
