@@ -39,3 +39,4 @@ from .getChatAdministrators import getChatAdministrators
 from .getChatMemberCount import getChatMemberCount
 from .getChatMember import getChatMember
 from .setChatStickerSet import setChatStickerSet
+from .deleteChatStickerSet import deleteChatStickerSet

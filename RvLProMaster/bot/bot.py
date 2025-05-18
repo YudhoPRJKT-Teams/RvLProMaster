@@ -41,7 +41,8 @@ from .Methods import (
   getChatAdministrators,
   getChatMemberCount,
   getChatMember,
-  setChatStickerSet
+  setChatStickerSet,
+  deleteChatStickerSet
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1011,6 +1012,16 @@ class Bot:
           sticker_set_name (str): Name of the sticker set to be set as the group sticker set.
       """
       return await setChatStickerSet().Initialize(chat_id, sticker_set_name)
+    # methods: deleteChatStickerSet
+    async def deleteChatStickerSet(self,
+      chat_id: int | str
+    ):
+      """Use this method to delete the group sticker set from a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field can_set_sticker_set optionally returned in getChat requests to check if the bot can use this method. Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+      """
+      return await deleteChatStickerSet().Initialize(chat_id)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
