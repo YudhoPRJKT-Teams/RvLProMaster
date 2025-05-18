@@ -37,7 +37,8 @@ from .Methods import (
   unpinChatMessage,
   unpinAllChatMessages,
   leaveChat,
-  getChat
+  getChat,
+  getChatAdministrators
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -958,6 +959,17 @@ class Bot:
           chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
       """
       return await getChat().Initialize(chat_id)
+    
+    # methods: getChatAdministrators
+    async def getChatAdministrators(self,
+      chat_id: int | str
+    ):
+      """Use this method to get a list of administrators in a chat. On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. If the chat is a group or a supergroup and no administrator was appointed, only the creator will be returned.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+      """
+      return await getChatAdministrators().Initialize(chat_id)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
