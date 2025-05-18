@@ -35,7 +35,8 @@ from .Methods import (
   editChatInviteLink,
   pinChatMessage,
   unpinChatMessage,
-  unpinAllChatMessages
+  unpinAllChatMessages,
+  leaveChat
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -934,6 +935,17 @@ class Bot:
           chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
       """
       return await unpinAllChatMessages().Initialize(chat_id)
+    
+    # methods: leaveChat
+    async def leaveChat(self,
+      chat_id: int | str
+    ):
+      """Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+      """
+      return await leaveChat().Initialize(chat_id)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
