@@ -56,7 +56,8 @@ from .Methods import (
   hideGeneralForumTopic,
   unhideGeneralForumTopic,
   unpinAllGeneralForumTopicMessages,
-  answerCallbackQuery
+  answerCallbackQuery,
+  getUserChatBoosts
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1217,6 +1218,19 @@ class Bot:
         url,
         cache_time
       )
+      
+    # methods: getUserChatBoosts
+    async def getUserChatBoosts(self,
+      chat_id: int | str,
+      user_id: int | str
+    ):
+      """Use this method to get the number of boosts a user has in a chat. Returns an Array of Boost objects.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          user_id (int): Unique identifier of the target user.
+      """
+      return await getUserChatBoosts().Initialize(chat_id, user_id) 
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
