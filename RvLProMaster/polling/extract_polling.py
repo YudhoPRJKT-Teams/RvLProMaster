@@ -101,6 +101,7 @@ class Telegram:
         elif "callback_query" in self.out_updates:
           self.callback_query.message.message_id = self.out_updates["callback_query"]["message"].get("message_id", "")
           self.callback_query.data = self.out_updates["callback_query"].get("data", "")
+          self.callback_query.id = self.out_updates["callback_query"].get("id", "")
           await self.DispatchCallbackQuery()
         
         # Request join
