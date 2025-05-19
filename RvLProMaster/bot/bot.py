@@ -55,7 +55,8 @@ from .Methods import (
   reopenGeneralForumTopic,
   hideGeneralForumTopic,
   unhideGeneralForumTopic,
-  unpinAllGeneralForumTopicMessages
+  unpinAllGeneralForumTopicMessages,
+  answerCallbackQuery
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1191,6 +1192,31 @@ class Bot:
           chat_id (str | int): Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
       """
       return await unpinAllGeneralForumTopicMessages().Initialize(chat_id)
+
+    # methods: answerCallbackQuery
+    async def answerCallbackQuery(self,
+      callback_query_id: int | str,
+      text: str,
+      show_alert: bool = True,
+      url: str | None = None,
+      cache_time: int | str | None = None,
+    ):
+      """Use this method to send answers to callback queries sent from inline keyboards. The answer will be shown to the user as a notification at the top of the chat screen or as an alert. On success, True is returned.
+
+      Args:
+          callback_query_id (int | str): Unique identifier for the query to be answered.
+          text (str): Text of the notification. If not specified, nothing will be shown to the user, 0-200 characters.
+          show_alert (bool): If true, an alert will be shown by the client instead of a simple notification at the top of the chat screen. Defaults to False.
+          url (str | None): URL that will be opened by the user's client. If you have created a Game and accepted payments, then you may use this parameter to show a 'Pay' button. Otherwise, you may use links like telegram.me/your_bot?start=XXXX where XXXX will be replaced with the actual query string.
+          cache_time (int | str | None): The maximum amount of time in seconds that the result of the callback query may be cached client-side. Defaults to 0.
+      """
+      return await answerCallbackQuery().Initialize(
+        callback_query_id,
+        text,
+        show_alert,
+        url,
+        cache_time
+      )
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
