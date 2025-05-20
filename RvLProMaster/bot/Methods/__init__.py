@@ -56,3 +56,4 @@ from .unpinAllGeneralForumTopicMessages import unpinAllGeneralForumTopicMessages
 from .answerCallbackQuery import answerCallbackQuery
 from .getUserChatBoosts import getUserChatBoosts
 from .setMyName import setMyName
+from .getMyName import getMyName

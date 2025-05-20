@@ -58,7 +58,8 @@ from .Methods import (
   unpinAllGeneralForumTopicMessages,
   answerCallbackQuery,
   getUserChatBoosts,
-  setMyName
+  setMyName,
+  getMyName
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1244,6 +1245,11 @@ class Bot:
           language_code (str | None): A two-letter ISO 639-1 language code or an empty string.
       """
       return await setMyName().Initialize(name, language_code)
+    # methods: getMyName
+    async def getMyName(self):
+      """Use this method to get the bot's name. Returns a BotName object on success.
+      """
+      return await getMyName().Initialize()
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
