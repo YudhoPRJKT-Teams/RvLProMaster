@@ -57,7 +57,8 @@ from .Methods import (
   unhideGeneralForumTopic,
   unpinAllGeneralForumTopicMessages,
   answerCallbackQuery,
-  getUserChatBoosts
+  getUserChatBoosts,
+  setMyName
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1231,6 +1232,18 @@ class Bot:
           user_id (int): Unique identifier of the target user.
       """
       return await getUserChatBoosts().Initialize(chat_id, user_id) 
+    # methods: setMyName
+    async def setMyName(self,
+      name: str,
+      language_code: str | None = None
+    ):
+      """Use this method to set the bot's name. Returns True on success.
+
+      Args:
+          name (str): New bot's name.
+          language_code (str | None): A two-letter ISO 639-1 language code or an empty string.
+      """
+      return await setMyName().Initialize(name, language_code)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
