@@ -59,7 +59,8 @@ from .Methods import (
   answerCallbackQuery,
   getUserChatBoosts,
   setMyName,
-  getMyName
+  getMyName,
+  setMyDescription
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1250,6 +1251,16 @@ class Bot:
       """Use this method to get the bot's name. Returns a BotName object on success.
       """
       return await getMyName().Initialize()
+    # methods: setMyDescription
+    async def setMyDescription(self,
+      description: str
+    ):
+      """Use this method to set the bot's description. Returns True on success.
+
+      Args:
+          description (str): New bot's description.
+      """
+      return await setMyDescription().Initialize(description)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)

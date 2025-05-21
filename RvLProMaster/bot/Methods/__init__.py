@@ -57,3 +57,4 @@ from .answerCallbackQuery import answerCallbackQuery
 from .getUserChatBoosts import getUserChatBoosts
 from .setMyName import setMyName
 from .getMyName import getMyName
+from .setMyDescription import setMyDescription
