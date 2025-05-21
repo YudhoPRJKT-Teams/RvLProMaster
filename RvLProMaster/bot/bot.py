@@ -61,7 +61,8 @@ from .Methods import (
   setMyName,
   getMyName,
   setMyDescription,
-  getMyDescription
+  getMyDescription,
+  setMyShortDescription
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1267,6 +1268,10 @@ class Bot:
       """Use this method to get the bot's description. Returns a BotDescription object on success.
       """
       return await getMyDescription().Initialize()
+    
+    # methods: setMyShortDescription
+    async def setMyShortDescription(self, short_description: str):
+      return await setMyShortDescription().Initialize(short_description)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
