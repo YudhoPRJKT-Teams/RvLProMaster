@@ -62,7 +62,8 @@ from .Methods import (
   getMyName,
   setMyDescription,
   getMyDescription,
-  setMyShortDescription
+  setMyShortDescription,
+  getMyShortDescription
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1272,6 +1273,9 @@ class Bot:
     # methods: setMyShortDescription
     async def setMyShortDescription(self, short_description: str):
       return await setMyShortDescription().Initialize(short_description)
+    # methods: getMyShortDescription
+    async def getMyShortDescription(self):
+      return await getMyShortDescription().Initialize()
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
