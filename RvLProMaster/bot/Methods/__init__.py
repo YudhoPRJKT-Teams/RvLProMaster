@@ -58,3 +58,4 @@ from .getUserChatBoosts import getUserChatBoosts
 from .setMyName import setMyName
 from .getMyName import getMyName
 from .setMyDescription import setMyDescription
+from .getMyDescription import getMyDescription
