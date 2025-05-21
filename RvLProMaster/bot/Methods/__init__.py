@@ -61,3 +61,4 @@ from .setMyDescription import setMyDescription
 from .getMyDescription import getMyDescription
 from .setMyShortDescription import setMyShortDescription
 from .getMyShortDescription import getMyShortDescription
+from .editMessageText import editMessageText
