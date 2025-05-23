@@ -39,6 +39,7 @@ class sendVideo:
                 async with session.post(f"{endpoint}/sendvideo", data=payload) as client:
                     self.raw_data = await client.json()
                     self.pretty_print = json.dumps(self.raw_data, indent=2)
+                    self.message_id = self.raw_data['result'].get('message_id', '')
                     return self
                 
             # File
@@ -60,6 +61,7 @@ class sendVideo:
                     async with session.post(f"{endpoint}/sendvideo", data=form_data) as client:
                         self.raw_data = await client.json()
                         self.pretty_print = json.dumps(self.raw_data, indent=2)
+                        self.message_id = self.raw_data['result'].get('message_id', '')
                         return self
             else:
                 payload = {
@@ -77,6 +79,7 @@ class sendVideo:
                 async with session.post(f"{endpoint}/sendVideo", data=payload) as client:
                     self.raw_data = await client.json()
                     self.pretty_print = json.dumps(self.raw_data, indent=2)
+                    self.message_id = self.raw_data['result'].get('message_id', '')
                     return self
                 
     except (aiohttp.ClientError, aiohttp.ClientResponseError, KeyError) as e:
