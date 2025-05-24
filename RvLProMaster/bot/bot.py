@@ -1330,20 +1330,32 @@ class Bot:
       chat_id: int | str,
       message_id: int | str,
       media: str,
+      type_media: str,
+      caption: str | None = None,
+      parse_mode: str | None = None,
+      has_spoiler: bool = False,
       reply_markup: str | None = None
     ):
-      """Use this method to edit media in messages sent by the bot or via the bot (for inline bots). On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
+      """Use this method to edit media messages sent by the bot or via the bot (for inline bots). On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
 
       Args:
           chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
           message_id (int): Identifier of the original message.
           media (str): New media content of the message.
+          type_media (str): Type of media content.
+          caption (str | None): New caption of the message.
+          parse_mode (str | None): Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
+          has_spoiler (bool): Pass True if the media content should be marked as spoiler.
           reply_markup (str | None): A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
       """
       return await editMessageMedia().Initialize(
         chat_id,
         message_id,
         media,
+        type_media,
+        caption,
+        parse_mode,
+        has_spoiler,
         reply_markup
       )
   # Bot Commands
