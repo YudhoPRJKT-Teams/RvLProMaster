@@ -65,7 +65,8 @@ from .Methods import (
   setMyShortDescription,
   getMyShortDescription,
   editMessageText,
-  editMessageCaption
+  editMessageCaption,
+  editMessageMedia
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1323,6 +1324,27 @@ class Bot:
         message_id,
         caption,
         parse_mode
+      )
+    # methods: editMessageMedia
+    async def editMessageMedia(self,
+      chat_id: int | str,
+      message_id: int | str,
+      media: str,
+      reply_markup: str | None = None
+    ):
+      """Use this method to edit media in messages sent by the bot or via the bot (for inline bots). On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          message_id (int): Identifier of the original message.
+          media (str): New media content of the message.
+          reply_markup (str | None): A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+      """
+      return await editMessageMedia().Initialize(
+        chat_id,
+        message_id,
+        media,
+        reply_markup
       )
   # Bot Commands
   def command(self, command: str):
