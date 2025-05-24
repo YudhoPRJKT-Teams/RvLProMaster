@@ -35,6 +35,7 @@ class sendLocation:
         async with session.post(f"{endpoint}/sendLocation", data=payload) as client:
           self.raw_data = await client.json()
           self.pretty_print = dumps(self.raw_data, indent=2)
+          self.messsage_id = self.raw_data['result'].get('message_id', '')
         return self
     except (ClientConnectorError, ClientError) as e:
       CreateLog.Log(f"sendLocation: {e}", "ERROR")
