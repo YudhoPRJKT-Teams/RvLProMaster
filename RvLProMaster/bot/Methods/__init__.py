@@ -67,3 +67,4 @@ from .editMessageMedia import editMessageMedia
 from .editMessageLiveLocation import editMessageLiveLocation
 from .stopMessageLiveLocation import stopMessageLiveLocation
 from .editMessageReplyMarkup import editMessageReplyMarkup
+from .stopPoll import stopPoll

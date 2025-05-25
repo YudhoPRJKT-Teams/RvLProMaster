@@ -69,7 +69,8 @@ from .Methods import (
   editMessageMedia,
   editMessageLiveLocation,
   stopMessageLiveLocation,
-  editMessageReplyMarkup
+  editMessageReplyMarkup,
+  stopPoll
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1417,6 +1418,19 @@ class Bot:
           reply_markup (str): A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
       """
       return await editMessageReplyMarkup().Initialize(chat_id, message_id, reply_markup)
+    
+    # methods: stopPoll
+    async def stopPoll(self,
+      chat_id: int | str,
+      message_id: int | str
+    ):
+      """Use this method to stop a poll which was sent by the bot. On success, the stopped Poll object is returned.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          message_id (int): Identifier of the original message with the poll.
+      """
+      return await stopPoll().Initialize(chat_id, message_id)
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
