@@ -66,7 +66,8 @@ from .Methods import (
   getMyShortDescription,
   editMessageText,
   editMessageCaption,
-  editMessageMedia
+  editMessageMedia,
+  editMessageLiveLocation
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1356,6 +1357,34 @@ class Bot:
         caption,
         parse_mode,
         has_spoiler,
+        reply_markup
+      )
+    
+    # methods: editMessageLiveLocation
+    async def editMessageLiveLocation(self,
+      chat_id: int | str,
+      message_id: int | str,
+      latitude: str | float,
+      longitude: str | float,
+      live_period: int | None = None,
+      reply_markup: str | None = None
+    ):
+      """Use this method to edit live location messages sent by the bot or via the bot (for inline bots). On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
+
+      Args:
+          chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
+          message_id (int): Identifier of the original message.
+          latitude (str | float): Latitude of new location.
+          longitude (str | float): Longitude of new location.
+          live_period (int | None): Period in seconds for which the location will be updated (see Live Locations).
+          reply_markup (str | None): A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+      """
+      return await editMessageLiveLocation().Initialize(
+        chat_id,
+        message_id,
+        latitude,
+        longitude,
+        live_period,
         reply_markup
       )
   # Bot Commands

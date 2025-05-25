@@ -64,3 +64,4 @@ from .getMyShortDescription import getMyShortDescription
 from .editMessageText import editMessageText
 from .editMessageCaption import editMessageCaption
 from .editMessageMedia import editMessageMedia
+from .editMessageLiveLocation import editMessageLiveLocation
