@@ -29,6 +29,7 @@ class sendPoll:
         async with session.post(f"{endpoint}/sendPoll", data=payload) as client:
           self.raw_data = await client.json()
           self.pretty_print = dumps(self.raw_data, indent=2)
+          self.message_id = self.raw_data['result'].get('message_id', '')
         return self
     except (ClientError, ClientResponseError) as e:
       CreateLog("ERROR", str(e))
