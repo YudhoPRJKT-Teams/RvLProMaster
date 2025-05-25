@@ -70,7 +70,8 @@ from .Methods import (
   editMessageLiveLocation,
   stopMessageLiveLocation,
   editMessageReplyMarkup,
-  stopPoll
+  stopPoll,
+  getAvailableGifts
 )
 from .bot_command import BotCommands
 from .events import EventWatcher
@@ -1431,6 +1432,10 @@ class Bot:
           message_id (int): Identifier of the original message with the poll.
       """
       return await stopPoll().Initialize(chat_id, message_id)
+    # methods: getAvailableGifts
+    async def getAvailableGifts(self):
+      """Returns the list of gifts that can be sent by the bot to users and channel chats. Requires no parameters. Returns a Gifts object."""
+      return await getAvailableGifts().Initialize()
   # Bot Commands
   def command(self, command: str):
     return BotCommands(command)
