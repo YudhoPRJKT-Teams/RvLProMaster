@@ -14,7 +14,11 @@ class MESSAGE:
             self.text = '' # message.reply_to_message.text
             self.From = self._from() # message.reply_to_message.From
             self.chat = self.Chat() # message.reply_to_message.chat
-        
+            self.photo = self._photo()
+            
+        class _photo:
+            def __init__(self) -> None:
+                self.file_id = '' # message.reply_to_message.photo.file_id
         # message.reply_to_message.From
         class _from:
             def __init__(self) -> None:

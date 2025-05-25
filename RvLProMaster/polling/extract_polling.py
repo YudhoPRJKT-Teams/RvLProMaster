@@ -57,6 +57,12 @@ class Telegram:
             self.message.reply_to_message.chat.username = f"@{reply_key["chat"].get("username", "")}"
             self.message.reply_to_message.chat.type = reply_key["chat"].get("type", "")
             self.message.reply_to_message.chat.type = reply_key["chat"].get("type", "")
+            
+            # message.reply_to_message.photo
+            if reply_key['photo'][0]:
+              self.message.reply_to_message.photo.file_id = reply_key['photo'][0].get("file_id", "")
+            if reply_key['photo'][1]:
+              self.message.reply_to_message.photo.file_id = reply_key['photo'][1].get("file_id", "")
           await self.DispatchCommand()
 
           # New Chat Participant
