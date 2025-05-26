@@ -25,3 +25,6 @@
 
 # Ingnore test files (test.py)
 **/test.py
+
+# ignore bot logs
+**/bot.log

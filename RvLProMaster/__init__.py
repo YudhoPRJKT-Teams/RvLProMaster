@@ -9,7 +9,8 @@ from .utils import (
   DownloadVideo,
   BaseConnection,
   ChatAction,
-  UnixTime
+  UnixTime,
+  LogViewer
 )
 from .config import (
   endpoint,
