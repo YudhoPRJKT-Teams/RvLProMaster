@@ -10,7 +10,8 @@ from .utils import (
   BaseConnection,
   ChatAction,
   UnixTime,
-  LogViewer
+  LogViewer,
+  CreateNekobin
 )
 from .config import (
   endpoint,
