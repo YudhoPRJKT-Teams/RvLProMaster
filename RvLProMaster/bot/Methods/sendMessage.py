@@ -1,5 +1,7 @@
 from ...config import endpoint
 from ...utils import CreateLog
+from typing import Optional, Union
+from ..Types import Message
 import json
 import aiohttp
 
@@ -15,7 +17,7 @@ class sendMessage:
     disable_notification: bool | None = None,
     protect_content: bool | None = None,
     reply_markup: str | None = None,
-    reply_message: int | str | None = None,
+    reply_message: Union[str, int, bool] = True,
   ):
     try:
       async with aiohttp.ClientSession() as session:
@@ -25,10 +27,13 @@ class sendMessage:
             'parse_mode': parse_mode,
             'disable_notification': disable_notification,
             'protect_content': protect_content,
-            'reply_to_message_id': reply_message
         }
         if reply_markup is not None:
-            payload['reply_markup'] = reply_markup
+          payload['reply_markup'] = reply_markup
+        if reply_message is not None:
+          payload['reply_to_message_id'] = reply_message
+        if reply_message is True:
+          payload['reply_to_message_id'] = Message.message_id
         async with session.post(f"{endpoint}/sendMessage", data=payload) as client:
             self.raw_data = await client.json()
             self.pretty_print = json.dumps(self.raw_data, indent=2)
