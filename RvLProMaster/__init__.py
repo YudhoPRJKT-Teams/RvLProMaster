@@ -16,7 +16,8 @@ from .config import (
   endpoint,
   token,
   gemini_api_key,
-  github_pat
+  github_pat,
+  nekobin_api
 )
 from .bot import (
   bot,
