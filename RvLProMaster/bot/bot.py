@@ -110,7 +110,7 @@ class Bot:
     async def sendMessage(self,
       chat_id: int | str,
       text: int | str,
-      parse_mode: Literal["MarkdownV2", "HTML", "Markdown"] = "MarkdownV2",
+      parse_mode: str,
       disable_notification: bool | None = None,
       protect_content: bool | None = None,
       reply_markup: str | None = None,
