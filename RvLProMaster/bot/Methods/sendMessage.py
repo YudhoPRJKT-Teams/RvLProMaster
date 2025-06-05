@@ -2,6 +2,7 @@ from ...config import endpoint
 from ...utils import CreateLog
 from typing import Optional, Union
 from ..Types import Message
+from ...bot_exceptions import exceptions
 import json
 import aiohttp
 
@@ -37,7 +38,11 @@ class sendMessage:
         async with session.post(f"{endpoint}/sendMessage", data=payload) as client:
             self.raw_data = await client.json()
             self.pretty_print = json.dumps(self.raw_data, indent=2)
-            self.message_id = self.raw_data['result'].get('message_id', '')
+            
+            if not self.raw_data.get('ok', 'true'):
+              if "is reserved and must be escaped with the preceding" in self.raw_data['description']:
+                raise exceptions.TEXT_ESCAPED('Need Escaped', 1000)
+            self.message_id = self.raw_data['result'].get('message_id', '')              
             return self
     except KeyError as e:
       CreateLog("ERROR", f"{e}")
