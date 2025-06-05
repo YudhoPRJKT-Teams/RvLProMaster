@@ -36,3 +36,7 @@ from .bot import (
 from .polling import (
   RunBOT
 )
+
+from .bot_exceptions import (
+  exceptions
+)
