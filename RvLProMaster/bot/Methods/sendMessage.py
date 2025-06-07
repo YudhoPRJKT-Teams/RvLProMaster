@@ -41,7 +41,7 @@ class sendMessage:
             
             if not self.raw_data.get('ok', 'true'):
               if "is reserved and must be escaped with the preceding" in self.raw_data['description']:
-                raise exceptions.TEXT_ESCAPED('Need Escaped', 1000)
+                raise exceptions.TEXT_ESCAPED('TEXT NEED ESCAPED!', 1000)
             self.message_id = self.raw_data['result'].get('message_id', '')              
             return self
     except KeyError as e:
