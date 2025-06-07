@@ -8,4 +8,4 @@ class exceptions:
       super().__init__(message)
     
     def __str__(self) -> str:
-      return f"{self.status_code} {self.message}"
+      return f"{self.status_code}: {self.message}"
