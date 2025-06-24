@@ -1,6 +1,6 @@
 from ...config import endpoint
 from ...utils import CreateLog
-from typing import Literal, Union
+from typing import Union
 from ..Types import Message
 import json
 import aiohttp
