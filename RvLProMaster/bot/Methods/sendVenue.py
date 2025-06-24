@@ -1,8 +1,10 @@
 from ...utils import CreateLog
 from ...config import endpoint
+from ..Types import Message
 from aiohttp import ClientSession
 from aiohttp.client_exceptions import ClientConnectorError, ClientError
 from json import dumps
+from typing import Union
 
 
 class sendVenue:
@@ -18,7 +20,7 @@ class sendVenue:
       protect_content: bool = False,
       title: str | None = None,
       address: str | None = None,
-      reply_message: int | str | None = None,
+      reply_message: Union[str, int, bool] = True,
   ):
     try:
       payload = {
@@ -30,8 +32,11 @@ class sendVenue:
           "title": title,
           "address": address,
       }
-      if reply_message is not None:
-        payload["reply_to_message_id"] = reply_message
+      if reply_message is True:
+        if Message.message_id:
+          payload["reply_to_message_id"] = Message.message_id
+        elif Message.reply_to_message.message_id:
+          payload["reply_to_message_id"] = Message.reply_to_message.message_id
       async with ClientSession() as session:
         async with session.post(f"{endpoint}/sendVenue", data=payload) as client:
           self.raw_data = await client.json()

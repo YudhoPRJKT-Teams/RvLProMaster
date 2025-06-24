@@ -563,7 +563,7 @@ class Bot:
       protect_content: bool = False,
       title: str | None = None,
       address: str | None = None,
-      reply_message: int | str | None = None
+      reply_message: Union[int, str, bool] = True
     ):
       """Use this method to send information about a venue. On success, the sent Message is returned.
 
@@ -575,7 +575,7 @@ class Bot:
           protect_content (bool): Protects the contents of the sent message from forwarding and saving.
           title (str | None): Name of the venue.
           address (str | None): Address of the venue.
-          reply_message (int | str): If the message is a reply, ID of the original message.
+          reply_message (int | str | bool): If the message is a reply, ID of the original message.
       """
       return await sendVenue().Initialize(
         chat_id,
