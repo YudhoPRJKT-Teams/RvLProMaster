@@ -407,7 +407,7 @@ class Bot:
       disable_notification: bool = False,
       protect_content: bool = False,
       reply_markup: str | None = None,
-      reply_message: int | str | None = None
+      reply_message: Union[int, str, bool] = True
     ):
       """Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in an audio/mpeg or audio/ogg format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
 
@@ -419,7 +419,7 @@ class Bot:
           disable_notification (bool): Sends the message silently. Users will receive a notification with no sound.
           protect_content (bool): Protects the contents of the sent message from forwarding and saving.
           reply_markup (str): Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
-          reply_message (int): If the message is a reply, ID of the original message.
+          reply_message (int | str | bool): If the message is a reply, ID of the original message.
       """
       return await sendVoice().Initialize(
         chat_id,
