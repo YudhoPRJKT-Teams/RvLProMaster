@@ -1,6 +1,6 @@
 from ...config import endpoint
 from ...utils import CreateLog
-from typing import Literal, Union
+from typing import Union
 from ..Types import Message
 import json
 import aiohttp
@@ -28,7 +28,6 @@ class sendVideoNote :
                     'chat_id': chat_id,
                     'video_note': video_note,
                     'caption': caption,
-                    'parse_mode': parse_mode,
                     'disable_notification': disable_notification,
                     'protect_content': protect_content
                 }
@@ -39,6 +38,8 @@ class sendVideoNote :
                         payload['reply_to_message_id'] = Message.reply_to_message.message_id
                 if reply_markup is not None:
                     payload['reply_markup'] = reply_markup
+                if parse_mode is not None:
+                    payload['parse_mode'] = parse_mode
                 async with session.post(f"{endpoint}/sendVideoNote", data=payload) as client:
                     self.raw_data = await client.json()
                     self.pretty_print = json.dumps(self.raw_data, indent=2)
