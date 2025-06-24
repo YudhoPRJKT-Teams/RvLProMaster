@@ -532,7 +532,7 @@ class Bot:
       disable_notification: bool = False,
       protect_content: bool = False,
       live_period: int | None = None,
-      reply_message: int | str | None = None
+      reply_message: Union[int, str, bool] = True
     ):
       """Use this method to send point on the map. On success, the sent Message is returned.
 
@@ -543,7 +543,7 @@ class Bot:
           disable_notification (bool): Sends the message silently. Users will receive a notification with no sound.
           protect_content (bool): Protects the contents of the sent message from forwarding and saving.
           live_period (int | None): Period in seconds for which the location will be updated (see Live Locations, should be between 60 and 86400.
-          reply_message (int | str): If the message is a reply, ID of the original message.
+          reply_message (int | str | bool): If the message is a reply, ID of the original message.
       """
       return await sendLocation().Initialize(
         chat_id,
