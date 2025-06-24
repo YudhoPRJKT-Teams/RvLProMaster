@@ -10,9 +10,9 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-##### You Need Install The Requirements
+##### Install This Project
 ```bash
-pip install -r requirements.txt
+pip install RvLProMaster
 ```
 
 ##### Create File Main.py To Use Bots
