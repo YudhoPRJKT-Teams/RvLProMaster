@@ -247,7 +247,7 @@ class Bot:
       disable_notification: bool = False,
       protect_content: bool = False,
       reply_markup: str | None = None,
-      reply_message: int | str | None = None,
+      reply_message: Union[str, int, bool] = True
     ):
       """Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document). On success, the sent Message is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
 
