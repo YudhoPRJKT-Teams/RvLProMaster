@@ -1,6 +1,7 @@
 from ...config import endpoint
 from ...utils import CreateLog
-from typing import Literal
+from typing import Literal, Union
+from ..Types import Message
 import json
 import aiohttp
 
@@ -18,7 +19,7 @@ class sendAnimation:
   disable_notification: bool = False,
   protect_content: bool = False,
   reply_markup: str | None = None,
-  reply_message: int | str | None = None
+  reply_message: Union[int, str, bool] = True
   ):
     try:
         async with aiohttp.ClientSession() as session:
@@ -37,6 +38,11 @@ class sendAnimation:
                     payload['reply_markup'] = reply_markup
                 if parse_mode is not None:
                     payload['parse_mode'] = parse_mode
+                if reply_message is True:
+                    if Message.message_id:
+                        payload['reply_to_message_id'] = Message.message_id
+                    elif Message.reply_to_message.message_id:
+                        payload['reply_to_message_id'] = Message.reply_to_message.message_id
                 async with session.post(f"{endpoint}/sendAnimation", data=payload) as client:
                     self.raw_data = await client.json()
                     self.pretty_print = json.dumps(self.raw_data, indent=2)
@@ -77,6 +83,11 @@ class sendAnimation:
                     payload['reply_markup'] = reply_markup
                 if parse_mode is not None:
                     payload['parse_mode'] = parse_mode
+                if reply_message is True:
+                    if Message.message_id:
+                        payload['reply_to_message_id'] = Message.message_id
+                    elif Message.reply_to_message.message_id:
+                        payload['reply_to_message_id'] = Message.reply_to_message.message_id
                 async with session.post(f"{endpoint}/sendAnimation", data=payload) as client:
                     self.raw_data = await client.json()
                     self.pretty_print = json.dumps(self.raw_data, indent=2)

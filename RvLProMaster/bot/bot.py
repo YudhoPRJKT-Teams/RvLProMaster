@@ -464,7 +464,7 @@ class Bot:
       disable_notification: bool = False,
       protect_content: bool = False,
       reply_markup: str | None = None,
-      reply_message: int | str | None = None
+      reply_message: Union[int, str, bool] = True
     ):
       """Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent Message is returned.
 
