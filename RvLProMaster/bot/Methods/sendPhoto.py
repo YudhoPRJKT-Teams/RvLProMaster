@@ -1,7 +1,7 @@
 from ...config import endpoint
 from ...utils import CreateLog
 from ..Types import Message
-from typing import Literal, Union
+from typing import Union
 import json
 import aiohttp
 
@@ -14,7 +14,7 @@ class sendPhoto:
   chat_id: int | str,
   photo: str,
   caption: str | None = None,
-  parse_mode: Literal["MarkdownV2", "HTML", "Markdown"] = "MarkdownV2",
+  parse_mode: str | None = None,
   has_spoiler: bool = False,
   disable_notification: bool = False,
   protect_content: bool = False,
@@ -29,13 +29,14 @@ class sendPhoto:
                     'chat_id': chat_id,
                     'photo': photo,
                     'caption': caption,
-                    'parse_mode': parse_mode,
                     'has_spoiler': has_spoiler,
                     'disable_notification': disable_notification,
                     'protect_content': protect_content
                 }
                 if reply_markup is not None:
                     payload['reply_markup'] = reply_markup
+                if parse_mode is not None:
+                    payload['parse_mode'] = parse_mode
                 if reply_message is True:
                     if Message.message_id:
                         payload['reply_to_message_id'] = Message.message_id
@@ -52,6 +53,8 @@ class sendPhoto:
                 
                 if reply_markup is not None:
                     form_data.add_field('reply_markup', reply_markup)
+                if parse_mode is not None:
+                    form_data.add_field('parse_mode', str(parse_mode))
                 if reply_message is True:
                     if Message.message_id:
                         form_data.add_field('reply_to_message_id', str(Message.message_id))
@@ -61,7 +64,6 @@ class sendPhoto:
                     form_data.add_field('photo', read_images, filename=photo)
                     form_data.add_field('chat_id', str(chat_id))
                     form_data.add_field('caption', str(caption))
-                    form_data.add_field('parse_mode', str(parse_mode))
                     form_data.add_field('has_spoiler', str(has_spoiler).lower())
                     form_data.add_field('disable_notification', str(disable_notification).lower())
                     form_data.add_field('protect_content', str(protect_content).lower())

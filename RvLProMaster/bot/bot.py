@@ -197,7 +197,7 @@ class Bot:
       chat_id: int | str,
       photo: str,
       caption: str | None = None,
-      parse_mode: Literal["MarkdownV2", "HTML", "Markdown"] = "MarkdownV2",
+      parse_mode: str | None = None,
       has_spoiler: bool = False,
       disable_notification: bool = False,
       protect_content: bool = False,
@@ -210,7 +210,7 @@ class Bot:
           chat_id (int): Unique identifier for the target chat or username of the target channel (in the format @channelusername).
           photo (str): Photo to send. Pass a file_id as String to send a photo that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a photo from the Internet, or upload a new photo using multipart/form-data.
           caption (str): Photo caption (may also be used when resending photos by file_id), 0-1024 characters after entities parsing.
-          parse_mode (str): Send MarkdownV2, HTML or Markdown style for parsing entities in the message text.
+          parse_mode (str | None): Send MarkdownV2, HTML or Markdown style for parsing entities in the message text.
           has_spoiler (bool): Disables link previews for links in this message.
           disable_notification (bool): Sends the message silently. Users will receive a notification with no sound.
           protect_content (bool): Protects the contents of the sent message from forwarding and saving.
