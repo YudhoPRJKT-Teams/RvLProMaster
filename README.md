@@ -27,7 +27,7 @@ async def command_start():
   Message.chat.id,
   f"*Hi I'm Bots*",
   "MarkdownV2",
-  reply_message=Message.message_id,
+  reply_message=True,
 )
 
 if __name__ == __main__:
