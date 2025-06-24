@@ -310,7 +310,7 @@ class Bot:
       chat_id: int | str,
       document: str,
       caption: str | None = None,
-      parse_mode: Literal["MarkdownV2", "HTML", "Markdown"] = "MarkdownV2",
+      parse_mode: str | None = None,
       disable_notification: bool = False,
       protect_content: bool = False,
       reply_markup: str | None = None,
@@ -322,7 +322,7 @@ class Bot:
           chat_id (int | str): Unique identifier for the target chat or username of the target channel (in the format @channelusername)
           document (str): document from url or path/to/file to send	File to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
           caption (str | None, optional): _description_. Video caption (may also be used when resending videos by file_id), 0-1024 characters after entities parsing
-          parse_mode (Literal[&quot;MarkdownV2&quot;, &quot;HTML&quot;, &quot;Markdown&quot;], optional): Mode for parsing entities in the video caption. See formatting options for more details. Defaults to "MarkdownV2".
+          parse_mode (str | None): Mode for parsing entities in the video caption. See formatting options for more details. Defaults to "MarkdownV2".
           disable_notification (bool): Sends the message silently. Users will receive a notification with no sound.
           protect_content (bool): Protects the contents of the sent message from forwarding and saving.
           reply_markup (str): Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.

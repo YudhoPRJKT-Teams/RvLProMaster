@@ -1,6 +1,6 @@
 from ...config import endpoint
 from ...utils import CreateLog
-from typing import Literal, Union
+from typing import Union
 from ..Types import Message
 import json
 import aiohttp
@@ -14,7 +14,7 @@ class sendDocument:
   chat_id: int | str,
   document: str,
   caption: str | None = None,
-  parse_mode: Literal["MarkdownV2", "HTML", "Markdown"] = "MarkdownV2",
+  parse_mode: str | None = None,
   disable_notification: bool = False,
   protect_content: bool = False,
   reply_markup: str | None = None,
