@@ -373,7 +373,7 @@ class Bot:
       disable_notification: bool = False,
       protect_content: bool = False,
       reply_markup: str | None = None,
-      reply_message: int | str | None = None
+      reply_message: Union[int, str, bool] = True
     ):
       """Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in an audio/mpeg or audio/ogg format. On success, the sent Message is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
 
