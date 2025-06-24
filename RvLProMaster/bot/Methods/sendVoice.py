@@ -1,7 +1,7 @@
 from ...config import endpoint
 from ...utils import CreateLog
 from ..Types import Message
-from typing import Literal, Union
+from typing import Union
 import json
 import aiohttp
 
@@ -35,6 +35,8 @@ class sendVoice:
                 
                 if reply_markup is not None:
                     payload['reply_markup'] = reply_markup
+                if parse_mode is not None:
+                    payload['parse_mode'] = parse_mode
                 if reply_message is True:
                     if Message.message_id:
                         payload['reply_to_message_id'] = Message.message_id
