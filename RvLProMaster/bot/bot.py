@@ -202,7 +202,7 @@ class Bot:
       disable_notification: bool = False,
       protect_content: bool = False,
       reply_markup: str | None = None,
-      reply_message: int | str | None = None
+      reply_message: Union[int, str, bool] = True
     ):
       """Use this method to send photos. On success, the sent Message is returned.
   
@@ -215,7 +215,7 @@ class Bot:
           disable_notification (bool): Sends the message silently. Users will receive a notification with no sound.
           protect_content (bool): Protects the contents of the sent message from forwarding and saving.
           reply_markup (str): Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
-          reply_message (int): If the message is a reply, ID of the original message.
+          reply_message (int | str | None): If the message is a reply, ID of the original message.
       """
       return await sendPhoto().Initialize(
         chat_id,
