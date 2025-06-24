@@ -1,15 +1,20 @@
 from setuptools import setup, find_packages
 
-def read_requirements():
-    with open("requirements.txt", encoding="utf-8") as f:
-        l = f.readlines()
-        return [line.strip() for line in l if line.strip() and not line.startswith("#")]
-
 setup(
     name="RvLProMaster",
     version="0.1.1",
     packages=find_packages(),
-    install_requires=read_requirements(),
+    install_requires=[
+        "aiohttp[speedups]",
+        "asyncio",
+        "python-dotenv",
+        "telegraph",
+        "openai",
+        "google-genai",
+        "markdown",
+        "yt-dlp",
+        "Pillow"
+    ],
     author="YudhoPatrianto",
     author_email="kydh01123@gmail.com",
     description="The Telegram Bot API",
