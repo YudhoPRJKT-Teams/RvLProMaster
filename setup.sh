@@ -1,5 +1,3 @@
-
-
 api_key=$1
 
 if [ -z "${api_key}" ]; then
@@ -12,7 +10,8 @@ rm -rf dist/ build/ RvLProMaster.egg-info/ > /dev/null 2>&1
 python -m build > /dev/null 2>&1
 
 echo "[INFO] Uploading to PyPI"
-twine upload --username __token__ --password "${api_key}" dist/* || {echo "[ERROR] Upload failed"; exit 1;}
-echo "[INFO] Upload successfuly"
+twine upload --username __token__ --password "${api_key}" dist/* || { echo "[ERROR] Upload failed"; exit 1; }
+
+echo "[INFO] Upload successful"
 echo "[INFO] Cleaning up"
-rm -rf dist/ build/ RvLProMaster.egg-info/ > /dev/null 2>&1"
+rm -rf dist/ build/ RvLProMaster.egg-info/ > /dev/null 2>&1
