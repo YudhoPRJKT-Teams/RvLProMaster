@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "RvLProMaster"
-version = "0.1.4"
+version = "0.1.5"
 description = "A Telegram Bot API for Python"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "Yudho Patrianto", email = "kydh01123@gmail.com" }]
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
     "aiohttp[speedups]",
     "python-dotenv",
