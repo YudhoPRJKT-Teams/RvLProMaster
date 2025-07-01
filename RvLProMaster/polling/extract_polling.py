@@ -8,7 +8,7 @@ import json
 
 class Telegram:
   def __init__(self):
-    self.current_event = ''
+    self.current_event = ""
     self.message = Message
     self.chat_join_request = ChatJoinRequest
     self.callback_query = CallbackQuery
@@ -18,7 +18,7 @@ class Telegram:
     while True:
       try:
         self.out_updates = await LongPolling()
-        self.current_event = ''
+        self.current_event = ""
         # Message
         if "message" in self.out_updates:
           msg_key = self.out_updates["message"]
@@ -59,11 +59,11 @@ class Telegram:
             self.message.reply_to_message.chat.type = reply_key["chat"].get("type", "")
             
             # message.reply_to_message.photo
-            if 'photo' in reply_key and len(reply_key['photo']) > 0:
-                if reply_key['photo'][0]:
-                    self.message.reply_to_message.photo.file_id = reply_key['photo'][0].get("file_id", "")
-                if len(reply_key['photo']) > 1 and reply_key['photo'][1]:
-                    self.message.reply_to_message.photo.file_id = reply_key['photo'][1].get("file_id", "")
+            if "photo" in reply_key and len(reply_key["photo"]) > 0:
+                if reply_key["photo"][0]:
+                    self.message.reply_to_message.photo.file_id = reply_key["photo"][0].get("file_id", "")
+                if len(reply_key["photo"]) > 1 and reply_key["photo"][1]:
+                    self.message.reply_to_message.photo.file_id = reply_key["photo"][1].get("file_id", "")
           await self.DispatchCommand()
 
           # New Chat Participant
