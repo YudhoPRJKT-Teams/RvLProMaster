@@ -71,7 +71,7 @@ class Configs:
                 f.write(f'token = "{input_token}"\nendpoint = "https://api.telegram.org/bot{input_token}"\n')
                 CreateLog("INFO", "Configuration Saved!")
             elif select_endpoint == 2:
-                f.write(f'token = "{input_token}"\nendpoint = "http://127.0.0.1/bot{input_token}"\napi_id = "{input_api_id}"\napi_hash = "{input_api_hash}"')
+                f.write(f'token = "{input_token}"\nendpoint = "http://127.0.0.1:8080/bot{input_token}"\napi_id = "{input_api_id}"\napi_hash = "{input_api_hash}"')
                 CreateLog("INFO", "Configuration Saved!")
             elif select_endpoint == 3:
                 custom_endpoint = str(input('Input Your Custom Endpoint: '))
