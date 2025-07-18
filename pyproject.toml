@@ -3,7 +3,7 @@ requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.exclude-package-data]
-"" = ["RvLProMaster/polling/telegram-bot-api"]
+"*" = ["polling/telegram-bot-api"]
 
 [project]
 name = "RvLProMaster"
