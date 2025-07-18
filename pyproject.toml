@@ -18,7 +18,8 @@ dependencies = [
     "google-genai",
     "markdown",
     "yt-dlp",
-    "Pillow"
+    "Pillow",
+    "aiofiles"
 ]
 
 [project.urls]
