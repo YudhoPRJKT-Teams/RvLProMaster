@@ -3,5 +3,7 @@ from .conf import (
   token,
   gemini_api_key,
   github_pat,
-  nekobin_api
+  nekobin_api,
+  api_id,
+  api_hash
 )

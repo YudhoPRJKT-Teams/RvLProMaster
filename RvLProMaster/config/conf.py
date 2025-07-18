@@ -44,6 +44,8 @@ class Configs:
         self.gemini_api_key = os.getenv("gemini_api_key")
         self.github_pat = os.getenv("github_pat")
         self.nekobin_api = os.getenv("nekobin_api")
+        self.api_id = os.getenv("api_id")
+        self.api_hash = os.getenv("api_hash")
 
 
     def findEnv(self, dir="."):
@@ -55,6 +57,8 @@ class Configs:
     def CreateAuth(self):
       try:
         input_token = str(input('Input Your Telegram BOT Token: '))
+        input_api_id = str(input('Input Your Telegram API ID: '))
+        input_api_hash = str(input('Input Your Telegram API Hash: '))
         select_endpoint = int(input(
             "Please Select Your Endpoint\n"
             "1. Use Endpoint From Telegram (https://api.telegram.org)\n"
@@ -67,11 +71,11 @@ class Configs:
                 f.write(f'token = "{input_token}"\nendpoint = "https://api.telegram.org/bot{input_token}"\n')
                 CreateLog("INFO", "Configuration Saved!")
             elif select_endpoint == 2:
-                f.write(f'token = "{input_token}"\nendpoint = "http://127.0.0.1/bot{input_token}"\n')
+                f.write(f'token = "{input_token}"\nendpoint = "http://127.0.0.1/bot{input_token}"\napi_id = "{input_api_id}"\napi_hash = "{input_api_hash}"')
                 CreateLog("INFO", "Configuration Saved!")
             elif select_endpoint == 3:
                 custom_endpoint = str(input('Input Your Custom Endpoint: '))
-                f.write(f'token = "{input_token}"\nendpoint = "{custom_endpoint}/bot{input_token}"\n')
+                f.write(f'token = "{input_token}"\nendpoint = "{custom_endpoint}/bot{input_token}"\napi_id = "{input_api_id}"\napi_hash = "{input_api_hash}"')
                 CreateLog("INFO", "Configuration Saved!")
             else:
                 CreateLog("ERROR", "Invalid Endpoint Selected")
@@ -89,3 +93,5 @@ token = Config.token
 gemini_api_key = Config.gemini_api_key
 github_pat = Config.github_pat
 nekobin_api = Config.nekobin_api
+api_id = Config.api_id
+api_hash = Config.api_hash
