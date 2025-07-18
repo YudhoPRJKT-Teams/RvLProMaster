@@ -15,13 +15,13 @@ class Server:
     self.proc = None
     self.temp_dir = None
     self.cmd = None
-    self.download_path = os.path.join(os.getcwd(), "polling", "telegram-bot-api")
-    
-    
+    self.current_dir = os.getcwd()
+    self.download_path = f"{self.current_dir}/RvLProMaster/polling/telegram-bot-api"
+
+
   # Download Server
   async def DownloadServer(self) -> None:
     try:
-      os.makedirs(os.path.dirname(self.download_path), exist_ok=True)
       if os.path.exists(self.download_path):
         CreateLog("INFO", "Server already exists, skipping download.")
       else:
@@ -44,13 +44,16 @@ class Server:
   
   # Create Temporary Directory  
   async def CreateTempFile(self) -> None:
-    self.temp_dir = os.path.join(os.getcwd(), "polling", "tg-files")
+    self.temp_dir = f"{tempfile.gettempdir()}/tg-files"
+
     try:
       os.makedirs(self.temp_dir, exist_ok=True)
       CreateLog("INFO", f"Temporary directory created at {self.temp_dir}")
     except Exception as e:
       CreateLog("ERROR", f"An error occurred while creating temporary directory: {e}")
       sys.exit(1)
+      
+
   # Start Server
   async def StartServer(self, api_id: str, api_hash: str) -> None:
     """The Function To Start The Server
@@ -67,32 +70,20 @@ class Server:
         if self.temp_dir is not None:
           if os.path.exists(self.temp_dir):
             CreateLog("INFO", "Starting Server!")
-            dirs = os.path.dirname(self.download_path)
-            os.chdir(dirs)
-
             # Linux
             if sys.platform == "linux":
               cmds = [
-                f"./telegram-bot-api",
+                f"./{self.download_path} ",
                 f"--api-id {api_id}",
                 f"--api-hash {api_hash}",
-                "--http-port=80",
+                "--http-port=8080",
                 f"--dir={self.temp_dir}",
                 f"--temp-dir={self.temp_dir}"
               ]
             # MacOS
             elif sys.platform == "darwin":
               cmds = [
-                f"./telegram-bot-api",
-                f"--api-id {api_id}",
-                f"--api-hash {api_hash}",
-                "--http-port=80",
-                f"--dir={self.temp_dir}",
-                f"--temp-dir={self.temp_dir}"
-              ]
-            elif sys.platform == "win32":
-              cmds = [
-                f"./telegram-bot-api",
+                f"./{self.download_path} ",
                 f"--api-id {api_id}",
                 f"--api-hash {api_hash}",
                 "--http-port=80",
@@ -115,8 +106,7 @@ class Server:
           sys.exit(1)
     except Exception as e:
       CreateLog("ERROR", f"An error occurred while starting the server: {e}")
-      sys.exit(1)
-      
+      await self.StopServer()
   # Stop Server
   async def StopServer(self) -> None:
     CreateLog("INFO", "Stopping Server!")

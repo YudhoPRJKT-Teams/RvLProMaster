@@ -9,7 +9,6 @@ srv = Server()
 async def RunBOT(always_run: bool = True, save_polling: bool = False):
   if api_id and api_hash is not None:
     await srv.StartServer(api_id, api_hash)
-  await asyncio.sleep(3)
   if always_run == True and save_polling == True:
     try:
         print(f"⚙️  Bot Running...\nAlways Run: {always_run}\nSave Polling: {save_polling}\nRunning At: {GetDate()}")
