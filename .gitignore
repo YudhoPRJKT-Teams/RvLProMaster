@@ -28,3 +28,6 @@
 
 # ignore bot logs
 **/bot.log
+
+# ignore server file
+**/RvLProMaster/polling/telegram-bot-api
