@@ -31,13 +31,13 @@ class Telegram:
           # message.chat
           self.message.chat.id = msg_key["chat"].get("id", "")
           self.message.chat.title = msg_key["chat"].get("title", "")
-          self.message.chat.username = f"@{msg_key["chat"].get("username", "")}"
-          
+          self.message.chat.username = f"@{msg_key['chat'].get('username', '')}"
+
           # mmessage.chat.from
           self.message.From.id = msg_key["from"].get("id", "")
           self.message.From.first_name = msg_key["from"].get("first_name", "")
           self.message.From.last_name = msg_key["from"].get("last_name", "")
-          self.message.From.username = f"@{msg_key["from"].get("username", "")}"          
+          self.message.From.username = f"@{msg_key['from'].get('username', '')}"
           
           if "reply_to_message" in msg_key:
             reply_key = msg_key["reply_to_message"]
@@ -49,12 +49,12 @@ class Telegram:
             self.message.reply_to_message.From.id = reply_key["from"].get("id", "")
             self.message.reply_to_message.From.first_name = reply_key["from"].get("first_name", "")
             self.message.reply_to_message.From.last_name = reply_key["from"].get("last_name", "")
-            self.message.reply_to_message.From.username = f"@{reply_key["from"].get("username", "")}"
-            
+            self.message.reply_to_message.From.username = f"@{reply_key['from'].get('username', '')}"
+
             # message.reply_to_message.chat
             self.message.reply_to_message.chat.id = reply_key["chat"].get("id", "")
             self.message.reply_to_message.chat.title = reply_key["chat"].get("title", "")
-            self.message.reply_to_message.chat.username = f"@{reply_key["chat"].get("username", "")}"
+            self.message.reply_to_message.chat.username = f"@{reply_key['chat'].get('username', '')}"
             self.message.reply_to_message.chat.type = reply_key["chat"].get("type", "")
             self.message.reply_to_message.chat.type = reply_key["chat"].get("type", "")
             
@@ -75,14 +75,14 @@ class Telegram:
             self.new_chat_participant.is_bot = self.out_updates["message"]["new_chat_participant"].get("is_bot", "")  
             self.new_chat_participant.first_name = self.out_updates["message"]["new_chat_participant"].get("first_name", "")
             self.new_chat_participant.last_name = self.out_updates["message"]["new_chat_participant"].get("last_name", "")
-            self.new_chat_participant.username = f"@{self.out_updates["message"]["new_chat_participant"].get("username", "")}"
+            self.new_chat_participant.username = f"@{self.out_updates['message']['new_chat_participant'].get('username', '')}"
             self.new_chat_participant.language_code = self.out_updates["message"]["new_chat_participant"].get("language_code", "")
             # new_chat_participant.message
             self.new_chat_participant.message.message_id = self.out_updates["message"].get("message_id", "")            
             # new_chat_participant.message.chat
             self.new_chat_participant.message.chat.id = self.out_updates["message"]["chat"].get("id", "")
             self.new_chat_participant.message.chat.title = self.out_updates["message"]["chat"].get("title", "")
-            self.new_chat_participant.message.chat.username = f"@{self.out_updates["message"]["chat"].get("username", "")}"
+            self.new_chat_participant.message.chat.username = f"@{self.out_updates['message']['chat'].get('username', '')}"
             self.new_chat_participant.message.chat.type = self.out_updates["message"]["chat"].get("type", "")
             await DispatchUser().UserJoined(self.current_event)
           # Left Chat Participant
@@ -94,14 +94,14 @@ class Telegram:
             self.left_chat_participant.is_bot = self.out_updates["message"]["left_chat_participant"].get("is_bot", "")  
             self.left_chat_participant.first_name = self.out_updates["message"]["left_chat_participant"].get("first_name", "")
             self.left_chat_participant.last_name = self.out_updates["message"]["left_chat_participant"].get("last_name", "")
-            self.left_chat_participant.username = f"@{self.out_updates["message"]["left_chat_participant"].get("username", "")}"
+            self.left_chat_participant.username = f"@{self.out_updates['message']['left_chat_participant'].get('username', '')}"
             self.left_chat_participant.language_code = self.out_updates["message"]["left_chat_participant"].get("language_code", "")
             # left_chat_participant.message
             self.left_chat_participant.message.message_id = self.out_updates["message"].get("message_id", "")            
             # left_chat_participant.message.chat
             self.left_chat_participant.message.chat.id = self.out_updates["message"]["chat"].get("id", "")
             self.left_chat_participant.message.chat.title = self.out_updates["message"]["chat"].get("title", "")
-            self.left_chat_participant.message.chat.username = f"@{self.out_updates["message"]["chat"].get("username", "")}"
+            self.left_chat_participant.message.chat.username = f"@{self.out_updates['message']['chat'].get('username', '')}"
             self.left_chat_participant.message.chat.type = self.out_updates["message"]["chat"].get("type", "")
             await DispatchUser().UserLeft(self.current_event)
         # Callback Query
@@ -124,7 +124,7 @@ class Telegram:
           # chat_join_request.chat
           self.chat_join_request.chat.id = req_key["chat"].get("id", "")
           self.chat_join_request.chat.title = req_key["chat"].get("title", "")
-          self.chat_join_request.chat.username = f"@{req_key["chat"].get("username", "")}"
+          self.chat_join_request.chat.username = f"@{req_key['chat'].get('username', '')}"
           self.chat_join_request.chat.type = req_key["chat"].get("type", "")
           
           # chat_join_request.from
@@ -132,7 +132,7 @@ class Telegram:
           self.chat_join_request.From.is_bot = req_key["from"].get("is_bot", "")
           self.chat_join_request.From.first_name = req_key["from"].get("first_name", "")
           self.chat_join_request.From.last_name = req_key["from"].get("last_name", "")
-          self.chat_join_request.From.username = f"@{req_key["from"].get("username", "")}"
+          self.chat_join_request.From.username = f"@{req_key['from'].get('username', '')}"
           self.chat_join_request.From.language_code = req_key["from"].get("language_code", "")
           await asyncio.sleep(2)
           await DispatchUser().RequestJoin(self.current_event)
