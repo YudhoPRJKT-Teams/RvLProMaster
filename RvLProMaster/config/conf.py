@@ -62,7 +62,7 @@ class Configs:
         select_endpoint = int(input(
             "Please Select Your Endpoint\n"
             "1. Use Endpoint From Telegram (https://api.telegram.org)\n"
-            "2. Use Localhost (http://127.0.0.1)\n"
+            "2. Use Localhost (http://127.0.0.1:8080)\n"
             "3. Use Your Own Custom Endpoint (http://api.myproject.com)\n"
             "Select Your Endpoint: "
         ))
