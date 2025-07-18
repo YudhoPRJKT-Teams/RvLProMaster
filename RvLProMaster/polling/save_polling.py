@@ -11,8 +11,6 @@ def SavePolling(out_updates: str):
     current_dir = os.getcwd()
     full_path = f"event.json"
     pretty_print = str(json.dumps(out_updates, indent=2))
-    print(f"Saving polling data to {current_dir}")
-    print(full_path)
     if not os.path.exists(full_path):
       with open(full_path, "w") as f:
         f.write(pretty_print)
