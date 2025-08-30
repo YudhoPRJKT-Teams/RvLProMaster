@@ -74,8 +74,8 @@ class Server:
             if sys.platform == "linux":
               cmds = [
                 self.download_path,
-                f"--api-id {api_id}",
-                f"--api-hash {api_hash}",
+                f"--api-id={api_id}",
+                f"--api-hash={api_hash}",
                 "--http-port=8080",
                 f"--dir={self.temp_dir}",
                 f"--temp-dir={self.temp_dir}"
@@ -84,8 +84,8 @@ class Server:
             elif sys.platform == "darwin":
               cmds = [
                 self.download_path,
-                f"--api-id {api_id}",
-                f"--api-hash {api_hash}",
+                f"--api-id={api_id}",
+                f"--api-hash={api_hash}",
                 "--http-port=80",
                 f"--dir={self.temp_dir}",
                 f"--temp-dir={self.temp_dir}"
