@@ -109,8 +109,8 @@ class Server:
             self.proc = subprocess.Popen(
               self.cmd,
               shell=True,
-              stderr=sys.stderr,
-              stdout=sys.stdout,
+              stderr=subprocess.PIPE,
+              stdout=subprocess.PIPE,
               start_new_session=True
             )
             await asyncio.sleep(1)
