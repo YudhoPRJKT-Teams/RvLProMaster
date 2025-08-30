@@ -79,6 +79,7 @@ class Server:
     """
     try:
       await self.DownloadServer()
+      self.killServer()
       await asyncio.sleep(3)
       if api_id and api_hash is not None:
         await self.CreateTempFile()
@@ -123,6 +124,8 @@ class Server:
     except Exception as e:
       CreateLog("ERROR", f"An error occurred while starting the server: {e}")
       self.StopServer()
+    except KeyboardInterrupt:
+      self.killServer()
   # Stop Server
   def StopServer(self) -> None:
     CreateLog("INFO", "Stopping Server!")
