@@ -59,28 +59,12 @@ class Configs:
         input_token = str(input('Input Your Telegram BOT Token: '))
         input_api_id = str(input('Input Your Telegram API ID: '))
         input_api_hash = str(input('Input Your Telegram API Hash: '))
-        select_endpoint = int(input(
-            "Please Select Your Endpoint\n"
-            "1. Use Endpoint From Telegram (https://api.telegram.org)\n"
-            "2. Use Localhost (http://127.0.0.1:8080)\n"
-            "3. Use Your Own Custom Endpoint (http://api.myproject.com)\n"
-            "Select Your Endpoint: "
-        ))
+        server_endpoint = f"http://127.0.0.1:8080/bot{input_token}"
+        if input_token and input_api_id and input_api_hash and server_endpoint == "":
+            CreateLog("ERROR", "Please Provide All Required Fields")
         with open(self.basedir, "w") as f:
-            if select_endpoint == 1:
-                f.write(f'token = "{input_token}"\nendpoint = "https://api.telegram.org/bot{input_token}"\n')
-                CreateLog("INFO", "Configuration Saved!")
-            elif select_endpoint == 2:
-                f.write(f'token = "{input_token}"\nendpoint = "http://127.0.0.1:8080/bot{input_token}"\napi_id = "{input_api_id}"\napi_hash = "{input_api_hash}"')
-                CreateLog("INFO", "Configuration Saved!")
-            elif select_endpoint == 3:
-                custom_endpoint = str(input('Input Your Custom Endpoint: '))
-                f.write(f'token = "{input_token}"\nendpoint = "{custom_endpoint}/bot{input_token}"\napi_id = "{input_api_id}"\napi_hash = "{input_api_hash}"')
-                CreateLog("INFO", "Configuration Saved!")
-            else:
-                CreateLog("ERROR", "Invalid Endpoint Selected")
-                time.sleep(2)
-                self.CreateAuth()
+            f.write(f'token = "{input_token}"\nendpoint = "{server_endpoint}"\napi_id = "{input_api_id}"\napi_hash = "{input_api_hash}"\ngemini_api_key = "" # Please Change If You Have\ngithub_pat = "" # Please Change If You Have\nnekobin_api = "" # Please Change If You Have')
+            CreateLog("INFO", "Configuration Saved!")
       except KeyboardInterrupt:
         CreateLog("INFO", "Authentication process interrupted by user")
         sys.exit(1)
