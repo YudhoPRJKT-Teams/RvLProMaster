@@ -113,7 +113,7 @@ class Server:
               stdout=sys.stdout,
               start_new_session=True
             )
-            await asyncio.sleep(3)
+            await asyncio.sleep(1)
           else:
             CreateLog("ERROR", "Temporary directory does not exist.")
             sys.exit(1)
