@@ -94,8 +94,8 @@ class Server:
             self.proc = subprocess.Popen(
               self.cmd,
               shell=True,
-              stderr=subprocess.PIPE,
-              stdout=subprocess.PIPE,
+              stderr=sys.stderr,
+              stdout=sys.stdout,
               start_new_session=True
             )
           else:
