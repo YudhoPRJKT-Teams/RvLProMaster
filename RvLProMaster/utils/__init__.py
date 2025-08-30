@@ -11,3 +11,4 @@ from .chat_action import ChatAction
 from .create_unix_time import UnixTime
 from .log_viewer import LogViewer
 from .create_nekobin import CreateNekobin
+from .check_earthquake import CheckEarthquake

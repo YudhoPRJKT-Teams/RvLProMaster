@@ -11,7 +11,8 @@ from .utils import (
   ChatAction,
   UnixTime,
   LogViewer,
-  CreateNekobin
+  CreateNekobin,
+  CheckEarthquake
 )
 from .config import (
   endpoint,
