@@ -106,9 +106,9 @@ class Server:
           sys.exit(1)
     except Exception as e:
       CreateLog("ERROR", f"An error occurred while starting the server: {e}")
-      await self.StopServer()
+      self.StopServer()
   # Stop Server
-  async def StopServer(self) -> None:
+  def StopServer(self) -> None:
     CreateLog("INFO", "Stopping Server!")
     if self.proc and self.proc.poll() is None:
       try:
