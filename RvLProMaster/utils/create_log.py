@@ -27,17 +27,15 @@ def CreateLog(
         log_pattern = f"{day_name} {formatted_time} {level} {get_running_file} - {message}"
         print(log_pattern)
         
-        if os.path.exists("bot.log"):
+        # Created Log
+        current_dir = os.getcwd()
+        if not os.path.exists(f"{current_dir}/bot.log"):
+            open(f"{current_dir}/bot.log", 'w')
+            if os.path.exists(f"{current_dir}/bot.log"):
+                with open(f"{current_dir}/bot.log", "a") as f:
+                    f.write(f"\n{log_pattern}")
+        else:
             with open("bot.log", "a") as f:
                 f.write(f"\n{log_pattern}")
     except FileNotFoundError:
-        with open("bot.log", "a") as f:
-            f.write(f"\n{log_pattern}")
-        os.chmod("bot.log", 0o777) # Ensure the log file is fully accessible
-    # if not os.path.exists("bot.log"):
-    #     os.chmod("bot.log", 0o777)  # Ensure the log file is fully accessible
-    #     with open("bot.log", "a") as f:
-    #         f.write(f"\n{log_pattern}")
-    # else:
-    #     with open("bot.log", "a") as f:
-    #         f.write(f"\n{log_pattern}")
+            open(f"{current_dir}/bot.log", 'w')
