@@ -52,8 +52,23 @@ class Server:
     except Exception as e:
       CreateLog("ERROR", f"An error occurred while creating temporary directory: {e}")
       sys.exit(1)
-      
-
+    
+  # Kill Server and check
+  def killServer(self):
+    try:
+      r = subprocess.check_output(["ps", "aux"], text=True)
+      l = r.splitlines()
+      k = []
+      for line in l:
+        if "telegram-bot-api" in line and "grep" not in line:
+          p = line.split()
+          found_pid = int(p[1])
+          os.kill(found_pid, signal.SIGKILL)
+          k.append(found_pid)
+        if k:
+          CreateLog("INFO", f"Killed Server With PID: {k}")
+    except Exception as e:
+      CreateLog("ERROR", str(e))
   # Start Server
   async def StartServer(self, api_id: str, api_hash: str) -> None:
     """The Function To Start The Server
@@ -111,12 +126,4 @@ class Server:
   # Stop Server
   def StopServer(self) -> None:
     CreateLog("INFO", "Stopping Server!")
-    if self.proc and self.proc.poll() is None:
-      try:
-        self.proc.send_signal(signal.SIGINT)
-        self.proc.wait(timeout=5)
-        CreateLog("INFO", "Server stopped successfully!")
-      except Exception as e:
-        CreateLog("ERROR", f"An error occurred while stopping the server: {e}")
-    else:
-      CreateLog("INFO", "Server is not running or has already stopped.")
+    self.killServer()
