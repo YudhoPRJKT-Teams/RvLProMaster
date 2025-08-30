@@ -73,7 +73,7 @@ class Server:
             # Linux
             if sys.platform == "linux":
               cmds = [
-                f"./{self.download_path} ",
+                self.download_path,
                 f"--api-id {api_id}",
                 f"--api-hash {api_hash}",
                 "--http-port=8080",
@@ -83,7 +83,7 @@ class Server:
             # MacOS
             elif sys.platform == "darwin":
               cmds = [
-                f"./{self.download_path} ",
+                self.download_path,
                 f"--api-id {api_id}",
                 f"--api-hash {api_hash}",
                 "--http-port=80",
