@@ -36,7 +36,8 @@ from .bot import (
   ParseMode
 )
 from .polling import (
-  RunBOT
+  RunBOT,
+  Server
 )
 
 from .bot_exceptions import (
