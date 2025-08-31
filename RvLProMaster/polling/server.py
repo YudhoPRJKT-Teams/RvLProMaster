@@ -114,7 +114,7 @@ class Server:
               stdout=subprocess.PIPE,
               start_new_session=True
             )
-            await asyncio.sleep(1)
+            await asyncio.sleep(3)
           else:
             CreateLog("ERROR", "Temporary directory does not exist.")
             sys.exit(1)
