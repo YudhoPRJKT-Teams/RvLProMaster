@@ -1,7 +1,9 @@
 from aiohttp import ClientSession
 from aiohttp.client_exceptions import ClientError
-from ..config import nekobin_api
+from ..config import Credentials
 from .create_log import CreateLog
+
+credentials = Credentials.GetCredentials()
 
 async def CreateNekobin(pasted_text: str):
   """Pasted Text Into Nekobin
@@ -11,11 +13,11 @@ async def CreateNekobin(pasted_text: str):
   """
   payload = {'content': pasted_text}
   async with ClientSession() as session:
-    async with session.post(f"{nekobin_api}/api/documents", data=payload) as client:
+    async with session.post(f"{credentials.nekobin_api}/api/documents", data=payload) as client:
       raw_data = await client.json()
       if 'result' in raw_data:
         keys = raw_data['result'].get("key")
-        return f"{nekobin_api}/{keys}"
+        return f"{credentials.nekobin_api}/{keys}"
       else:
         CreateLog("ERROR", "Not Found Keys")
         

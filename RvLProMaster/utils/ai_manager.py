@@ -1,12 +1,15 @@
-from ..config import gemini_api_key, github_pat
+from ..config import Credentials
 from google import genai
 from openai import OpenAI
+
+# Get Credentials
+credentials = Credentials.GetCredentials()
 
 class AI:    
     @staticmethod
     # Gemini Text
     def Gemini(question):
-        client = genai.Client(api_key=gemini_api_key)
+        client = genai.Client(api_key=credentials.gemini_api_key)
         r = client.models.generate_content(
             model='gemini-2.0-flash-thinking-exp-01-21',
             contents= question
@@ -18,7 +21,7 @@ class AI:
     def AzureOpenAI(question):            
         client = OpenAI(
             base_url = "https://models.inference.ai.azure.com",
-            api_key = github_pat
+            api_key = credentials.github_pat
         )
         r = client.chat.completions.create(
             messages=[

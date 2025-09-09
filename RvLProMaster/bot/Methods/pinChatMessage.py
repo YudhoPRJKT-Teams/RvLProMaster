@@ -1,9 +1,13 @@
-from ...config import endpoint
+from ...config import Credentials
 from ...utils import CreateLog
 from aiohttp import ClientSession
 from aiohttp.client_exceptions import ClientResponseError, ClientError
 from json import dumps
 
+
+# Get Credentials
+credentials = Credentials.GetCredentials()
+endpoint = credentials.endpoint
 
 class pinChatMessage:
   def __init__(self) -> None:

@@ -1,7 +1,11 @@
-from ...config import endpoint
+from ...config import Credentials
 from ...utils import CreateLog
 import json
 import aiohttp
+
+# Get Credentials
+credentials = Credentials.GetCredentials()
+endpoint = credentials.endpoint
 
 class logOut:
   def __init__(self) -> None:

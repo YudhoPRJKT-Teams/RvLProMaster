@@ -1,8 +1,12 @@
 from aiohttp import ClientSession
 from aiohttp.client_exceptions import ClientError, ClientResponseError
-from ...config import endpoint
+from ...config import Credentials
 from json import dumps
 from ...utils import CreateLog
+
+# Get Credentials
+credentials = Credentials.GetCredentials()
+endpoint = credentials.endpoint
 
 class declineChatJoinRequest:
   def __init__(self) -> None:

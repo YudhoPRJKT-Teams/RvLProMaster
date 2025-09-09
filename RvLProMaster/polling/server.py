@@ -1,6 +1,7 @@
 from aiohttp import ClientSession, ClientError
 from ..utils import CreateLog
-from ..config import api_id, api_hash
+from ..config import Credentials
+from aiohttp.client_exceptions import ClientConnectorError
 import aiofiles
 import os
 import sys
@@ -9,6 +10,10 @@ import subprocess
 import asyncio
 import signal
 
+# Get Credentials
+credentials = Credentials.GetCredentials()
+api_id = credentials.api_id
+api_hash = credentials.api_hash
 
 class Server:
   def __init__(self) -> None:

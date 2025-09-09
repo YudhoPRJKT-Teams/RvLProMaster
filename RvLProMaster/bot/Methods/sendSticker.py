@@ -1,9 +1,13 @@
-from ...config import endpoint
+from ...config import Credentials
 from ...utils import CreateLog
 from aiohttp import ClientSession, FormData
 from aiohttp.client_exceptions import ClientConnectorError, ClientError
 from json import dumps
 from PIL import Image
+
+# Get Credentials
+credentials = Credentials.GetCredentials()
+endpoint = credentials.endpoint
 
 class sendSticker:
   def __init__(self) -> None:

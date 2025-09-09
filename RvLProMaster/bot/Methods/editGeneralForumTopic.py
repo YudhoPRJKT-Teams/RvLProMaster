@@ -1,8 +1,12 @@
 from ...utils import CreateLog
-from ...config import endpoint
+from ...config import Credentials
 from json import dumps
 from aiohttp import ClientSession
 from aiohttp.client_exceptions import ClientResponseError, ClientError
+
+# Get Credentials
+credentials = Credentials.GetCredentials()
+endpoint = credentials.endpoint
 
 class editGeneralForumTopic:
   def __init__(self) -> None:

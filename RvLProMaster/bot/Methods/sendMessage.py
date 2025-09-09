@@ -1,10 +1,14 @@
-from ...config import endpoint
+from ...config import Credentials
 from ...utils import CreateLog
 from typing import Optional, Union
 from ..Types import Message
 from ...bot_exceptions import exceptions
 import json
 import aiohttp
+
+# Get Credentials
+credentials = Credentials.GetCredentials()
+endpoint = credentials.endpoint
 
 class sendMessage:
   def __init__(self) -> None:

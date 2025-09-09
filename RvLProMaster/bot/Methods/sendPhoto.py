@@ -1,9 +1,13 @@
-from ...config import endpoint
+from ...config import Credentials
 from ...utils import CreateLog
 from ..Types import Message
 from typing import Union
 import json
 import aiohttp
+
+# Get Credentials
+credentials = Credentials.GetCredentials()
+endpoint = credentials.endpoint
 
 class sendPhoto:
   def __init__(self) -> None:

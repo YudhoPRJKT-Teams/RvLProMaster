@@ -1,9 +1,13 @@
-from ...config import endpoint
+from ...config import Credentials
 from ...utils import CreateLog
 from typing import Union
 from ..Types import Message
 import json
 import aiohttp
+
+# Get Credentials
+credentials = Credentials.GetCredentials()
+endpoint = credentials.endpoint
 
 class sendAudio:
   def __init__(self) -> None:

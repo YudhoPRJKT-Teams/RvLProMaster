@@ -1,8 +1,12 @@
-from ...config import endpoint
+from ...config import Credentials
 from ...utils import CreateLog
 from typing import Literal
 import json
 import aiohttp
+
+# Get Credentials
+credentials = Credentials.GetCredentials()
+endpoint = credentials.endpoint
 
 class deleteMessage:
   def __init__(self) -> None:

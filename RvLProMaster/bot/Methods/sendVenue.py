@@ -1,10 +1,14 @@
 from ...utils import CreateLog
-from ...config import endpoint
+from ...config import Credentials
 from ..Types import Message
 from aiohttp import ClientSession
 from aiohttp.client_exceptions import ClientConnectorError, ClientError
 from json import dumps
 from typing import Union
+
+# Get Credentials
+credentials = Credentials.GetCredentials()
+endpoint = credentials.endpoint
 
 
 class sendVenue:

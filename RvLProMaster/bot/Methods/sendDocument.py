@@ -1,10 +1,15 @@
-from ...config import endpoint
+from ...config import Credentials
 from ...utils import CreateLog
 from typing import Union
 from ..Types import Message
 import json
 import aiohttp
 import os
+
+# Get Credentials
+credentials = Credentials.GetCredentials()
+endpoint = credentials.endpoint
+
 class sendDocument:
   def __init__(self) -> None:
     self.raw_data = None
